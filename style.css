@@ -1,4 +1,6 @@
 * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 body {
@@ -7,6 +9,10 @@ body {
   padding: 30px;
 }
 .construct {
+  -webkit-transition: all 0.5s linear;
+  -moz-transition: all 0.5s linear;
+  -o-transition: all 0.5s linear;
+  -ms-transition: all 0.5s linear;
   transition: all 0.5s linear;
   width: 800px;
   margin: 0 auto;
@@ -56,21 +62,35 @@ body {
 }
 .construct .ear img {
   opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
   position: absolute;
   top: 0;
   left: 0;
 }
 .construct .ear img.current {
   opacity: 1;
+  -ms-filter: none;
+  filter: none;
 }
 .construct .ear img.first {
   opacity: 1;
+  -ms-filter: none;
+  filter: none;
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  -ms-transition: none;
   transition: none;
 }
 .construct .ear.right {
   float: right;
 }
 .construct .ear.left {
+  -webkit-transform: scaleX(-1);
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -ms-transform: scaleX(-1);
   transform: scaleX(-1);
   -webkit-transform: scaleX(-1);
   float: left;
@@ -91,6 +111,7 @@ body {
 }
 .construct .switcher {
   display: inline-block;
+  -webkit-border-radius: 3px;
   border-radius: 3px;
   overflow: hidden;
   border: 1px solid #2c775d;
@@ -100,6 +121,8 @@ body {
   display: inline-block;
   padding: 3px 10px;
   float: left;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
@@ -121,6 +144,10 @@ body {
 }
 .construct[data-id="different"] .control .control-variations.left {
   display: table-cell;
+  -webkit-transform: scaleX(-1);
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -ms-transform: scaleX(-1);
   transform: scaleX(-1);
   -webkit-transform: scaleX(-1);
   float: right;
@@ -168,7 +195,13 @@ body {
   width: 30px;
   height: 30px;
   z-index: 2;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  -ms-transition: all 0.2s linear;
   transition: all 0.2s linear;
 }
 .construct .control .control-variations .control-variations-list span:hover::before {
@@ -187,6 +220,8 @@ body {
 }
 .construct .control .control-variations .control-variations-list span.active:hover::before {
   z-index: 3;
+  top: -10px;
+  left: -10px;
 }
 .construct .control.color .c0::before {
   background: #transparent;
@@ -259,38 +294,56 @@ body {
 }
 .construct .control.plate .c0::before {
   background: url("img/empty.png") no-repeat -30px -26px;
+  -webkit-background-size: 80px;
+  -moz-background-size: 80px;
   background-size: 80px;
 }
 .construct .control.plate .c1::before {
   background: url("img/pl_blaze.png") no-repeat -30px -26px;
+  -webkit-background-size: 80px;
+  -moz-background-size: 80px;
   background-size: 80px;
 }
 .construct .control.plate .c2::before {
   background: url("img/pl_efl.png") no-repeat -30px -26px;
+  -webkit-background-size: 80px;
+  -moz-background-size: 80px;
   background-size: 80px;
 }
 .construct .control.plate .c3::before {
   background: url("img/pl_red.png") no-repeat -30px -26px;
+  -webkit-background-size: 80px;
+  -moz-background-size: 80px;
   background-size: 80px;
 }
 .construct .control.plate .c4::before {
   background: url("img/pl_jade.png") no-repeat -30px -26px;
+  -webkit-background-size: 80px;
+  -moz-background-size: 80px;
   background-size: 80px;
 }
 .construct .control.plate .c5::before {
   background: url("img/pl_blaze.png") no-repeat -30px -26px;
+  -webkit-background-size: 80px;
+  -moz-background-size: 80px;
   background-size: 80px;
 }
 .construct .control.plate .c6::before {
   background: url("img/pl_efl.png") no-repeat -30px -26px;
+  -webkit-background-size: 80px;
+  -moz-background-size: 80px;
   background-size: 80px;
 }
 .construct .control.plate .c7::before {
   background: url("img/pl_red.png") no-repeat -30px -26px;
+  -webkit-background-size: 80px;
+  -moz-background-size: 80px;
   background-size: 80px;
 }
 .construct .control.plate .c8::before {
   background: url("img/pl_jade.png") no-repeat -30px -26px;
+  -webkit-background-size: 80px;
+  -moz-background-size: 80px;
   background-size: 80px;
 }
 .construct .control .c0::before {
