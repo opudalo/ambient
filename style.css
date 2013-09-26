@@ -1,0 +1,304 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  background: #fff;
+  font-family: "PT Sans", sans-serif;
+  padding: 30px;
+}
+.construct {
+  transition: all 0.5s linear;
+  width: 800px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.construct .ear {
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
+  width: 280px;
+  height: 400px;
+}
+.construct .ear.invisible {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.construct .ear .color {
+  position: absolute;
+  z-index: 1;
+}
+.construct .ear .color.first {
+  z-index: 2;
+}
+.construct .ear .color.second {
+  z-index: 3;
+}
+.construct .ear .chanel-color {
+  position: absolute;
+  z-index: 4;
+}
+.construct .ear .chanel-color.first {
+  z-index: 5;
+}
+.construct .ear .chanel-color.second {
+  z-index: 6;
+}
+.construct .ear .plate {
+  position: absolute;
+  z-index: 7;
+}
+.construct .ear .plate.first {
+  z-index: 8;
+}
+.construct .ear .plate.second {
+  z-index: 9;
+}
+.construct .ear img {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.construct .ear img.current {
+  opacity: 1;
+}
+.construct .ear img.first {
+  opacity: 1;
+  transition: none;
+}
+.construct .ear.right {
+  float: right;
+}
+.construct .ear.left {
+  transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  float: left;
+}
+.construct .ears {
+  width: 100%;
+  overflow: hidden;
+  margin-top: 20px;
+}
+.construct .controller {
+  text-align: center;
+  margin: 20px 0;
+}
+.construct h1 {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.construct .switcher {
+  display: inline-block;
+  border-radius: 3px;
+  overflow: hidden;
+  border: 1px solid #2c775d;
+}
+.construct .switcher span {
+  line-height: 30px;
+  display: inline-block;
+  padding: 3px 10px;
+  float: left;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  background: #3fc294;
+}
+.construct .switcher span:first-child {
+  border-right: 1px solid #2c775d;
+}
+.construct .switcher span:hover {
+  background: #97e7cb;
+}
+.construct .switcher span.active {
+  pointer-events: none;
+  cursor: default;
+  background: #2c775d;
+}
+.construct[data-id="different"] {
+  width: 800px;
+}
+.construct[data-id="different"] .control .control-variations.left {
+  display: table-cell;
+  transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  float: right;
+}
+.construct[data-id="different"] .control .control-title {
+  text-align: center;
+}
+.construct .control {
+  display: table;
+  margin-bottom: 15px;
+  width: 100%;
+}
+.construct .control .control-title {
+  vertical-align: top;
+  display: table-cell;
+  width: 200px;
+  padding-top: 5px;
+}
+.construct .control .control-variations {
+  display: table-cell;
+  float: left;
+}
+.construct .control .control-variations.left {
+  display: none;
+}
+.construct .control .control-variations .control-variations-list {
+  height: 40px;
+}
+.construct .control .control-variations .control-variations-list span {
+  float: left;
+  display: inline-block;
+  position: relative;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  cursor: pointer;
+}
+.construct .control .control-variations .control-variations-list span::before {
+  position: absolute;
+  content: '';
+  display: inline-block;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  z-index: 2;
+  box-sizing: border-box;
+  transition: all 0.2s linear;
+}
+.construct .control .control-variations .control-variations-list span:hover::before {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #00a36a;
+  z-index: 3;
+  top: -6px;
+  left: -6px;
+}
+.construct .control .control-variations .control-variations-list span.active::before {
+  display: inline-block;
+  border: 4px solid #4be7b0;
+  z-index: 1;
+}
+.construct .control .control-variations .control-variations-list span.active:hover::before {
+  z-index: 3;
+}
+.construct .control.color .c0::before {
+  background: #transparent;
+}
+.construct .control.color .c1::before {
+  background: #492b13;
+}
+.construct .control.color .c2::before {
+  background: #24381d;
+}
+.construct .control.color .c3::before {
+  background: #92918c;
+}
+.construct .control.color .c4::before {
+  background: #6ecddf;
+}
+.construct .control.color .c5::before {
+  background: #252525;
+}
+.construct .control.color .c6::before {
+  background: #054670;
+}
+.construct .control.color .c7::before {
+  background: #b80000;
+}
+.construct .control.color .c8::before {
+  background: #cec9c3;
+}
+.construct .control.color .c9::before {
+  background: #cba469;
+}
+.construct .control.color .c10::before {
+  background: #fbe34b;
+}
+.construct .control.color .c11::before {
+  background: #cec9c3;
+}
+.construct .control.color .c12::before {
+  background: #cba469;
+}
+.construct .control.color .c13::before {
+  background: #fbe34b;
+}
+.construct .control.chanel-color .c0::before {
+  background: #transparent;
+}
+.construct .control.chanel-color .c1::before {
+  background: #81B6DA;
+}
+.construct .control.chanel-color .c2::before {
+  background: #FF7A61;
+}
+.construct .control.chanel-color .c3::before {
+  background: #4CCE94;
+}
+.construct .control.chanel-color .c4::before {
+  background: #BECE4C;
+}
+.construct .control.chanel-color .c5::before {
+  background: #81B6DA;
+}
+.construct .control.chanel-color .c6::before {
+  background: #FF7A61;
+}
+.construct .control.chanel-color .c7::before {
+  background: #4CCE94;
+}
+.construct .control.chanel-color .c8::before {
+  background: #BECE4C;
+}
+.construct .control.plate .c0::before {
+  background: url("img/empty.png") no-repeat -30px -26px;
+  background-size: 80px;
+}
+.construct .control.plate .c1::before {
+  background: url("img/pl_blaze.png") no-repeat -30px -26px;
+  background-size: 80px;
+}
+.construct .control.plate .c2::before {
+  background: url("img/pl_efl.png") no-repeat -30px -26px;
+  background-size: 80px;
+}
+.construct .control.plate .c3::before {
+  background: url("img/pl_red.png") no-repeat -30px -26px;
+  background-size: 80px;
+}
+.construct .control.plate .c4::before {
+  background: url("img/pl_jade.png") no-repeat -30px -26px;
+  background-size: 80px;
+}
+.construct .control.plate .c5::before {
+  background: url("img/pl_blaze.png") no-repeat -30px -26px;
+  background-size: 80px;
+}
+.construct .control.plate .c6::before {
+  background: url("img/pl_efl.png") no-repeat -30px -26px;
+  background-size: 80px;
+}
+.construct .control.plate .c7::before {
+  background: url("img/pl_red.png") no-repeat -30px -26px;
+  background-size: 80px;
+}
+.construct .control.plate .c8::before {
+  background: url("img/pl_jade.png") no-repeat -30px -26px;
+  background-size: 80px;
+}
+.construct .control .c0::before {
+  background: none;
+}
+.construct .control.cable {
+  display: none;
+}
+.construct .control.cable .control-variations.left {
+  visibility: hidden;
+}
