@@ -3,173 +3,593 @@
 <head>
     <meta charset="UTF-8" />
     <title>Создай свой кастом</title>
-    <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script src="main.js"></script>
+    <link href="reset.css" rel="stylesheet" />
     <link href="style.css" rel="stylesheet" />
     <link href="images.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="construct" data-id="same">
-        <h1>Создай свои кастомы</h1>
-        <div class="controller">
-            <div class="switcher">
-                <span data-id="same" class="active">Одинаковые</span>
-                <span data-id="different">Разные</span>
+
+    <div class="b-head">
+
+        <div class="b-logo"><a href="/"><img src="img/logo.png" alt="Ambient Acoustics" /></a></div>
+        <ol class="nav">
+            <li class="nav-item">Модель</li>
+            <li class="nav-item">Цвет</li>
+            <li class="nav-item">Вставки</li>
+            <li class="nav-item">Рисунки</li>
+            <li class="nav-item">Провода</li>
+            <li class="nav-item">Другое</li>
+            <li class="nav-item">Доставка</li>
+        </ol>
+    </div>
+    <div class="b-construct">
+        <div class="b-step s1">
+            <div class="b-models-list">
+                <div data-id="1">
+                    AM1
+                </div>
+                <div data-id="2">
+                    AM2
+                    <span class="sub">Vocal Edition</span>
+                </div>
+                <div data-id="3">
+                    AM3
+                    <span class="sub">Ref Edition</span>
+                </div>
+                <div data-id="4">
+                    AM4
+                    <span class="sub">Music Edition</span>
+                </div>
+                <div data-id="5">
+                    AM5
+                    <span class="sub">Hybrid</span>
+                </div>
+                <div data-id="6">
+                    AM6
+                    <span class="sub">Hi Rez</span>
+                </div>
+                <div class="custom" data-id="7">
+                    Кастомизация<br/>наушников
+                </div>
+            </div>
+
+            <div class="b-models-description">
+                <div class="m0">
+                    <div class="wrap">
+                        <div class="header">Добро пожаловать в помощник<br/>подбора ушных мониторов</div>
+                        <div class="description">
+                            Для начала выберите одну из моделей<br/>мониторов слева и нажмите<br/>кнопку "Выбрать"
+                        </div>
+                    </div>
+                </div>
+                <div class="model m1">
+                    <div class="model-head">
+                        <div class="col1">
+                            <img src="img/am2.png" />
+                        </div>
+                        <div class="col2">
+                            <div class="header">Индивидуальные мониторы<br/>AM1</div>
+                            <div class="pricing">
+                                <span class="b-btn btn-select">Выбрать</span>
+                                2200 грн
+                            </div>
+                        </div>
+                    </div>
+                    <div class="model-description">
+                        <div class="col1">
+                            <p>
+                            Это миниатюрная двухполосная  акустическая система в вашем ухе. С дополнительным массивным излучателем для  воспроизведения низких частот и маленьким, «быстрым» излучателем для средних и высоких, мониторы AM2-VocalEdition создают исключительно «четкий» и «плотный» низкочастотный диапазон и артикуляционный высокочастотный диапазон, которого невозможно добиться одним излучателем!
+                            </p>
+                            <p>
+                            AM2-VocalEdition обладает слегка подчеркнутым речевым диапазоном, что понравиться любителям инструментальных «аналитических» музыкальных стилей. Идеально подойдут для контроля вокала (особенно женского), акустической гитары и смычковых инструментов!
+                            </p>
+                        </div>
+                        <div class="col2">
+                            <div class="specs-title">
+                            Характеристики:
+                            </div>
+                            <div class="specs">
+                                2 излучателя типа Balanced Armature в ухе<br/> (1-низкие/средние, 1-высокие)
+                            </div>
+                            <div class="specs">
+                            2 звуковода
+                            </div>
+                            <div class="specs">
+                            2-полосный пассивный кроссовер
+                            </div>
+                            <div class="specs">
+                            Частотный диапазон — 10 Гц — 17 кГц
+                            </div>
+                            <div class="specs">
+                            Чувствительность (500 Гц) — 110 дБ/мВт
+                            </div>
+                            <div class="specs">
+                            Импеданс (500 Гц) – 45 Ом
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="model m2">
+                    <div class="model-head">
+                        <div class="col1">
+                            <img src="img/am2.png" />
+                        </div>
+                        <div class="col2">
+                            <div class="header">Индивидуальные мониторы<br/>AM2 Vocal Edition</div>
+                            <div class="pricing">
+                                <span class="b-btn btn-select">Выбрать</span>
+                                3200 грн
+                            </div>
+                        </div>
+                    </div>
+                    <div class="model-description">
+                        <div class="col1">
+                            <p>
+                            Это миниатюрная двухполосная  акустическая система в вашем ухе. С дополнительным массивным излучателем для  воспроизведения низких частот и маленьким, «быстрым» излучателем для средних и высоких, мониторы AM2-VocalEdition создают исключительно «четкий» и «плотный» низкочастотный диапазон и артикуляционный высокочастотный диапазон, которого невозможно добиться одним излучателем!
+                            </p>
+                            <p>
+                            AM2-VocalEdition обладает слегка подчеркнутым речевым диапазоном, что понравиться любителям инструментальных «аналитических» музыкальных стилей. Идеально подойдут для контроля вокала (особенно женского), акустической гитары и смычковых инструментов!
+                            </p>
+                        </div>
+                        <div class="col2">
+                            <div class="specs-title">
+                            Характеристики:
+                            </div>
+                            <div class="specs">
+                                2 излучателя типа Balanced Armature в ухе<br/> (1-низкие/средние, 1-высокие)
+                            </div>
+                            <div class="specs">
+                            2 звуковода
+                            </div>
+                            <div class="specs">
+                            2-полосный пассивный кроссовер
+                            </div>
+                            <div class="specs">
+                            Частотный диапазон — 10 Гц — 17 кГц
+                            </div>
+                            <div class="specs">
+                            Чувствительность (500 Гц) — 110 дБ/мВт
+                            </div>
+                            <div class="specs">
+                            Импеданс (500 Гц) – 45 Ом
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="model m3">
+                    <div class="model-head">
+                        <div class="col1">
+                            <img src="img/am2.png" />
+                        </div>
+                        <div class="col2">
+                            <div class="header">Индивидуальные мониторы<br/>AM3 Ref Edition</div>
+                            <div class="pricing">
+                                <span class="b-btn btn-select">Выбрать</span>
+                                3600 грн
+                            </div>
+                        </div>
+                    </div>
+                    <div class="model-description">
+                        <div class="col1">
+                            <p>
+                            Это миниатюрная двухполосная  акустическая система в вашем ухе. С дополнительным массивным излучателем для  воспроизведения низких частот и маленьким, «быстрым» излучателем для средних и высоких, мониторы AM2-VocalEdition создают исключительно «четкий» и «плотный» низкочастотный диапазон и артикуляционный высокочастотный диапазон, которого невозможно добиться одним излучателем!
+                            </p>
+                            <p>
+                            AM2-VocalEdition обладает слегка подчеркнутым речевым диапазоном, что понравиться любителям инструментальных «аналитических» музыкальных стилей. Идеально подойдут для контроля вокала (особенно женского), акустической гитары и смычковых инструментов!
+                            </p>
+                        </div>
+                        <div class="col2">
+                            <div class="specs-title">
+                            Характеристики:
+                            </div>
+                            <div class="specs">
+                                2 излучателя типа Balanced Armature в ухе<br/> (1-низкие/средние, 1-высокие)
+                            </div>
+                            <div class="specs">
+                            2 звуковода
+                            </div>
+                            <div class="specs">
+                            2-полосный пассивный кроссовер
+                            </div>
+                            <div class="specs">
+                            Частотный диапазон — 10 Гц — 17 кГц
+                            </div>
+                            <div class="specs">
+                            Чувствительность (500 Гц) — 110 дБ/мВт
+                            </div>
+                            <div class="specs">
+                            Импеданс (500 Гц) – 45 Ом
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="model m4">
+                    <div class="model-head">
+                        <div class="col1">
+                            <img src="img/am2.png" />
+                        </div>
+                        <div class="col2">
+                            <div class="header">Индивидуальные мониторы<br/>AM4 Music Edition</div>
+                            <div class="pricing">
+                                <span class="b-btn btn-select">Выбрать</span>
+                                4000 грн
+                            </div>
+                        </div>
+                    </div>
+                    <div class="model-description">
+                        <div class="col1">
+                            <p>
+                            Это миниатюрная двухполосная  акустическая система в вашем ухе. С дополнительным массивным излучателем для  воспроизведения низких частот и маленьким, «быстрым» излучателем для средних и высоких, мониторы AM2-VocalEdition создают исключительно «четкий» и «плотный» низкочастотный диапазон и артикуляционный высокочастотный диапазон, которого невозможно добиться одним излучателем!
+                            </p>
+                            <p>
+                            AM2-VocalEdition обладает слегка подчеркнутым речевым диапазоном, что понравиться любителям инструментальных «аналитических» музыкальных стилей. Идеально подойдут для контроля вокала (особенно женского), акустической гитары и смычковых инструментов!
+                            </p>
+                        </div>
+                        <div class="col2">
+                            <div class="specs-title">
+                            Характеристики:
+                            </div>
+                            <div class="specs">
+                                2 излучателя типа Balanced Armature в ухе<br/> (1-низкие/средние, 1-высокие)
+                            </div>
+                            <div class="specs">
+                            2 звуковода
+                            </div>
+                            <div class="specs">
+                            2-полосный пассивный кроссовер
+                            </div>
+                            <div class="specs">
+                            Частотный диапазон — 10 Гц — 17 кГц
+                            </div>
+                            <div class="specs">
+                            Чувствительность (500 Гц) — 110 дБ/мВт
+                            </div>
+                            <div class="specs">
+                            Импеданс (500 Гц) – 45 Ом
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="model m5">
+                    <div class="model-head">
+                        <div class="col1">
+                            <img src="img/am2.png" />
+                        </div>
+                        <div class="col2">
+                            <div class="header">Индивидуальные мониторы<br/>AM5 Hybrid</div>
+                            <div class="pricing">
+                                <span class="b-btn btn-select">Выбрать</span>
+                                4200 грн
+                            </div>
+                        </div>
+                    </div>
+                    <div class="model-description">
+                        <div class="col1">
+                            <p>
+                            Это миниатюрная двухполосная  акустическая система в вашем ухе. С дополнительным массивным излучателем для  воспроизведения низких частот и маленьким, «быстрым» излучателем для средних и высоких, мониторы AM2-VocalEdition создают исключительно «четкий» и «плотный» низкочастотный диапазон и артикуляционный высокочастотный диапазон, которого невозможно добиться одним излучателем!
+                            </p>
+                            <p>
+                            AM2-VocalEdition обладает слегка подчеркнутым речевым диапазоном, что понравиться любителям инструментальных «аналитических» музыкальных стилей. Идеально подойдут для контроля вокала (особенно женского), акустической гитары и смычковых инструментов!
+                            </p>
+                        </div>
+                        <div class="col2">
+                            <div class="specs-title">
+                            Характеристики:
+                            </div>
+                            <div class="specs">
+                                2 излучателя типа Balanced Armature в ухе<br/> (1-низкие/средние, 1-высокие)
+                            </div>
+                            <div class="specs">
+                            2 звуковода
+                            </div>
+                            <div class="specs">
+                            2-полосный пассивный кроссовер
+                            </div>
+                            <div class="specs">
+                            Частотный диапазон — 10 Гц — 17 кГц
+                            </div>
+                            <div class="specs">
+                            Чувствительность (500 Гц) — 110 дБ/мВт
+                            </div>
+                            <div class="specs">
+                            Импеданс (500 Гц) – 45 Ом
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="model m6">
+                    <div class="model-head">
+                        <div class="col1">
+                            <img src="img/am2.png" />
+                        </div>
+                        <div class="col2">
+                            <div class="header">Индивидуальные мониторы<br/>AM6 Hi Rez</div>
+                            <div class="pricing">
+                                <span class="b-btn btn-select">Выбрать</span>
+                                4600 грн
+                            </div>
+                        </div>
+                    </div>
+                    <div class="model-description">
+                        <div class="col1">
+                            <p>
+                            Это миниатюрная двухполосная  акустическая система в вашем ухе. С дополнительным массивным излучателем для  воспроизведения низких частот и маленьким, «быстрым» излучателем для средних и высоких, мониторы AM2-VocalEdition создают исключительно «четкий» и «плотный» низкочастотный диапазон и артикуляционный высокочастотный диапазон, которого невозможно добиться одним излучателем!
+                            </p>
+                            <p>
+                            AM2-VocalEdition обладает слегка подчеркнутым речевым диапазоном, что понравиться любителям инструментальных «аналитических» музыкальных стилей. Идеально подойдут для контроля вокала (особенно женского), акустической гитары и смычковых инструментов!
+                            </p>
+                        </div>
+                        <div class="col2">
+                            <div class="specs-title">
+                            Характеристики:
+                            </div>
+                            <div class="specs">
+                                2 излучателя типа Balanced Armature в ухе<br/> (1-низкие/средние, 1-высокие)
+                            </div>
+                            <div class="specs">
+                            2 звуковода
+                            </div>
+                            <div class="specs">
+                            2-полосный пассивный кроссовер
+                            </div>
+                            <div class="specs">
+                            Частотный диапазон — 10 Гц — 17 кГц
+                            </div>
+                            <div class="specs">
+                            Чувствительность (500 Гц) — 110 дБ/мВт
+                            </div>
+                            <div class="specs">
+                            Импеданс (500 Гц) – 45 Ом
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="model m7">
+                    <div class="model-head">
+                        <div class="col1">
+                            <img src="img/am2.png" />
+                        </div>
+                        <div class="col2">
+                            <div class="header">Индивидуальные мониторы<br/>Customs Edition</div>
+                            <div class="pricing">
+                                <span class="b-btn btn-select">Выбрать</span>
+                                2200 грн
+                            </div>
+                        </div>
+                    </div>
+                    <div class="model-description">
+                        <div class="col1">
+                            <p>
+                            Это миниатюрная двухполосная  акустическая система в вашем ухе. С дополнительным массивным излучателем для  воспроизведения низких частот и маленьким, «быстрым» излучателем для средних и высоких, мониторы AM2-VocalEdition создают исключительно «четкий» и «плотный» низкочастотный диапазон и артикуляционный высокочастотный диапазон, которого невозможно добиться одним излучателем!
+                            </p>
+                            <p>
+                            AM2-VocalEdition обладает слегка подчеркнутым речевым диапазоном, что понравиться любителям инструментальных «аналитических» музыкальных стилей. Идеально подойдут для контроля вокала (особенно женского), акустической гитары и смычковых инструментов!
+                            </p>
+                        </div>
+                        <div class="col2">
+                            <div class="specs-title">
+                            Характеристики:
+                            </div>
+                            <div class="specs">
+                                2 излучателя типа Balanced Armature в ухе<br/> (1-низкие/средние, 1-высокие)
+                            </div>
+                            <div class="specs">
+                            2 звуковода
+                            </div>
+                            <div class="specs">
+                            2-полосный пассивный кроссовер
+                            </div>
+                            <div class="specs">
+                            Частотный диапазон — 10 Гц — 17 кГц
+                            </div>
+                            <div class="specs">
+                            Чувствительность (500 Гц) — 110 дБ/мВт
+                            </div>
+                            <div class="specs">
+                            Импеданс (500 Гц) – 45 Ом
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="ears">
-            <div class="ear left">
-                <div class="color">
-                    <img class="first" />
-                    <img class="second" />
+        <div class="b-step s2">
+            <div class="col1">
+                <div class="ears">
+                    <div class="ear left"></div>
+                    <div class="ear right"></div>
                 </div>
-                <div class="chanel-color">
-                    <img class="first" />
-                    <img class="second" />
+
+                <div class="controls">
+                    <div class="c1"></div>
+                    <div class="c2"></div>
+                    <div class="c3"></div>
+                    <div class="c4">
+                        <div class="pins-selector"></div>
+                        <div class="cord-table">
+                            <div class="cord-col1">
+                                <div class="selector jack-selector">
+                                    <div class="selector-title">Тип джека</div>
+                                    <div class="selector-radio">
+                                        <label for="angle"><img src="i/7-1.png"></label> 
+                                        <input type="radio" checked name="jack-selector" id="angle" value="angle" />
+
+                                        <label for="straight"><img src="i/7-2.png"></label>
+                                        <input type="radio" name="jack-selector" id="straight" value="straight" />
+                                   </div>
+                                </div>
+                            </div>
+                            <div class="cord-col2"></div>
+                            <div class="cord-col3">
+                                <div class="selector cord-selector">
+                                   <div class="selector-title">Длина провода</div>
+                                   <div class="selector-radio">
+                                       <div>
+                                            <input type="radio" checked name="length-selector" id="l100" value="l100" />
+                                            <label for="l100">100 см <img src="i/8-1.png"></label> 
+                                       </div>
+                                       <div>
+                                            <input type="radio" name="length-selector" id="l130" value="l130" />
+                                            <label for="l130">130 см <img src="i/8-2.png"></label>
+                                       </div>
+                                       <div>
+                                            <input type="radio" name="length-selector" id="l160" value="l160" />
+                                            <label for="l160">160 см <img src="i/8-3.png"></label>
+                                       </div>
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="c5">
+                        <div class="misc">
+                            <div class="misc-row">
+                                <div class="misc-col1">
+
+                                    <label>
+                                        <input type="checkbox" name="engraving" id="enrgaving" value="engraving" />Гравировка кейса
+                                    </label>
+                                    <div class="misc-desc">
+                                        <input type="text" placeholder="Введите текст гравировки"/>
+                                    </div>
+                                </div>
+                                <div class="misc-col2">
+                                    <label>
+                                        <input type="checkbox" name="engraving" id="enrgaving" value="engraving" />Сквозная вентиляция
+                                    </label>
+                                    <div class="misc-desc">
+                                        Уменьшаяет звукоизоляцию до такого уровня, что остается базовая коммуникация с залом.
+                                    </div>
+                                </div>
+                                <div class="misc-col3">
+                                    <label>
+                                        <input type="checkbox" name="engraving" id="enrgaving" value="engraving" />Установка серных фильтров
+                                    </label>
+                                    <div class="misc-desc">
+                                        Используют чтобы сера и влага не попадала внутрь мониторов.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="misc-row">
+                                <div class="misc-col1">
+                                    <label>
+                                        <input type="checkbox" name="engraving" id="enrgaving" value="engraving" />Замена акустических фильтров либо установка новых
+                                    </label>
+                                    <div class="misc-desc">
+                                       Влияют на характер звучания
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="plate">
-                    <img class="first" />
-                    <img class="second" />
+                <div class="c6 shipping">
+                    <div class="header">Адресс доставки</div>
+
+                    <div class="shipping-form">
+                        <label data-hint="Инициалы будут отпечатаны
+на крышке кейса">
+                            Инициалы
+                            <input type="text" name="" value="" />
+                        </label>
+                        <label>
+                            Имейл
+                            <input type="text" name="" value="" />
+                        </label>
+                        <label>
+                            Фамилия
+                            <input type="text" name="" value="" />
+                        </label>
+                        <label>
+                            Имя
+                            <input type="text" name="" value="" />
+                        </label>
+                        <label>
+                            Отчество
+                            <input type="text" name="" value="" />
+                        </label>
+                        <label data-hint1="Улица, дом, квартира">
+                            Адрес
+                            <input type="text" name="" value="" />
+                        </label>
+                        <label>
+                            Город
+                            <input type="text" name="" value="" />
+                        </label>
+                        <label>
+                            Страна
+                            <input type="text" name="" value="" />
+                        </label>
+                        <label>
+                            <span>Почтовый индекс</span>
+                            <input type="text" name="" value="" />
+                        </label>
+                        <label>
+                            Телефон
+                            <input type="text" name="" value="" />
+                        </label>
+                        <label>
+                            Примечания
+                            <textarea name=""></textarea>
+                        </label>
+                        <label>
+                            Примечания
+                            <textarea name=""></textarea>
+                        </label>
+
+                        <div class="btn-submit">
+                            <div class="submit b-btn">Отправить заказ</div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-            <div class="ear right">
-                <div class="color">
-                    <img class="first" />
-                    <img class="second" />
+            <div class="col2">
+                <div class="continue">
+                    <span class="b-btn btn-continue">
+                    Продолжить
+                    </span>
                 </div>
-                <div class="chanel-color">
-                    <img class="first" />
-                    <img class="second" />
-                </div>
-                <div class="plate">
-                    <img class="first" />
-                    <img class="second" />
+                <div class="total">
+                    <div class="header">
+                        <div class="title">Общая стоимость</div>
+                        <div class="price">3200 грн</div>
+                    </div>
+                    <div class="details">
+                        <div class="details-row">
+                            <div class="value">
+                                AM2 Vocal Edition
+                                <div class="hint">желтый</div>
+                            </div>
+                            <div class="price">
+                                3200 грн
+                            </div>
+                        </div>
+                        <div class="details-row">
+                            <div class="value">
+                                AM2 Vocal Edition
+                                <div class="hint">желтый</div>
+                            </div>
+                            <div class="price">
+                                3200 грн
+                            </div>
+                        </div>
+                        <div class="details-row">
+                            <div class="value">
+                                AM2 Vocal Edition
+                                <div class="hint">желтый</div>
+                            </div>
+                            <div class="price">
+                                3200 грн
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="control color">
-          <div class="control-variations left">
-              <div class="control-variations-list">
-                  <span data-img="left_clear.jpg" class="c0 active">&times;</span>
-                  <span data-img="left_ib.jpg" class="c1"></span>
-                  <span data-img="left_gm.jpg" class="c2"></span>
-                  <span data-img="left_smk.jpg" class="c3"></span>
-                  <span data-img="left_ib.jpg" class="c4"></span>
-                  <span data-img="left_gm.jpg" class="c5"></span>
-                  <span data-img="left_bl.jpg" class="c6"></span>
-                  <span data-img="left_cr.jpg" class="c7"></span>
-                  <span data-img="left_ib.jpg" class="c8"></span>
-                  <span data-img="left_gm.jpg" class="c9"></span>
-                  <span data-img="left_bl.jpg" class="c10"></span>
-                  <span data-img="left_gm.jpg" class="c11"></span>
-                  <span data-img="left_bl.jpg" class="c12"></span>
-                  <span data-img="left_cr.jpg" class="c13"></span>
-              </div>
-          </div>
-          <div class="control-title">
-              Цвет основы
-          </div>
-          <div class="control-variations">
-              <div class="control-variations-list">
-                  <span data-img="left_clear.jpg" class="c0 active">&times;</span>
-                  <span data-img="left_ib.jpg" class="c1"></span>
-                  <span data-img="left_gm.jpg" class="c2"></span>
-                  <span data-img="left_smk.jpg" class="c3"></span>
-                  <span data-img="left_ib.jpg" class="c4"></span>
-                  <span data-img="left_gm.jpg" class="c5"></span>
-                  <span data-img="left_bl.jpg" class="c6"></span>
-                  <span data-img="left_cr.jpg" class="c7"></span>
-                  <span data-img="left_ib.jpg" class="c8"></span>
-                  <span data-img="left_gm.jpg" class="c9"></span>
-                  <span data-img="left_bl.jpg" class="c10"></span>
-                  <span data-img="left_gm.jpg" class="c11"></span>
-                  <span data-img="left_bl.jpg" class="c12"></span>
-                  <span data-img="left_cr.jpg" class="c13"></span>
-              </div>
-          </div>
-      </div>
-      <div class="control chanel-color"> 
-          <div class="control-variations left">
-              <div class="control-variations-list">
-                  <span data-img="empty.png" class="c0 active">&times;</span>
-                  <span data-img="ch_bl.png" class="c1"></span>
-                  <span data-img="ch_cr.png" class="c2"></span>
-                  <span data-img="ch_gr.png" class="c3"></span>
-                  <span data-img="ch_yel.png" class="c4"></span>
-                  <span data-img="ch_bl.png" class="c5"></span>
-                  <span data-img="ch_cr.png" class="c6"></span>
-                  <span data-img="ch_gr.png" class="c7"></span>
-                  <span data-img="ch_yel.png" class="c8"></span>
-              </div>
-          </div>
-          <div class="control-title">
-              Цвет канала
-          </div>
-          <div class="control-variations">
-              <div class="control-variations-list">
-                  <span data-img="empty.png" class="c0 active">&times;</span>
-                  <span data-img="ch_bl.png" class="c1"></span>
-                  <span data-img="ch_cr.png" class="c2"></span>
-                  <span data-img="ch_gr.png" class="c3"></span>
-                  <span data-img="ch_yel.png" class="c4"></span>
-                  <span data-img="ch_bl.png" class="c5"></span>
-                  <span data-img="ch_cr.png" class="c6"></span>
-                  <span data-img="ch_gr.png" class="c7"></span>
-                  <span data-img="ch_yel.png" class="c8"></span>
-              </div>
-          </div>
-      </div>
-      <div class="control plate">
-         <div class="control-variations left">
-              <div class="control-variations-list">
-                  <span data-img="empty.png" class="c0 active">&times;</span>
-                  <span data-img="pl_blaze.png" class="c1"></span>
-                  <span data-img="pl_efl.png" class="c2"></span>
-                  <span data-img="pl_red.png" class="c3"></span>
-                  <span data-img="pl_jade.png" class="c4"></span>
-                  <span data-img="pl_blaze.png" class="c5"></span>
-                  <span data-img="pl_efl.png" class="c6"></span>
-                  <span data-img="pl_red.png" class="c7"></span>
-                  <span data-img="pl_jade.png" class="c8"></span>
-              </div>
-          </div>
-          <div class="control-title">
-              Оформление плейта
-          </div>
-          <div class="control-variations">
-              <div class="control-variations-list">
-                  <span data-img="empty.png" class="c0 active">&times;</span>
-                  <span data-img="pl_blaze.png" class="c1"></span>
-                  <span data-img="pl_efl.png" class="c2"></span>
-                  <span data-img="pl_red.png" class="c3"></span>
-                  <span data-img="pl_jade.png" class="c4"></span>
-                  <span data-img="pl_blaze.png" class="c5"></span>
-                  <span data-img="pl_efl.png" class="c6"></span>
-                  <span data-img="pl_red.png" class="c7"></span>
-                  <span data-img="pl_jade.png" class="c8"></span>
-              </div>
-          </div>
-      </div>
-      <div class="control cable">
-          <div class="control-variations left">
-              <div class="control-variations-list">
-                  <span class="c0">&times;</span>
-                  <span class="c1"></span>
-                  <span class="c2"></span>
-              </div>
-          </div>
-          <div class="control-title">
-              Кабель
-          </div>
-          <div class="control-variations">
-              <div class="control-variations-list">
-                  <span class="c0">&times;</span>
-                  <span class="c1"></span>
-                  <span class="c2"></span>
-              </div>
-          </div>
-      </div>
-  </div>
+    </div>
 </body>
 </html>
