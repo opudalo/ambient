@@ -460,6 +460,19 @@ body
             top: -86px
             left: -79px
 
+        &.left .graphics img
+            top: 110px
+            left: 10px
+            transform: rotate(-40deg)
+
+        &.right .graphics
+            transform: scaleX(-1)
+            img
+                top: 110px
+                left: initial
+                right: 10px
+                transform: rotate(40deg)
+
         img
             //transition: opacity .3s linear
             opacity: 0
@@ -499,7 +512,7 @@ body
 
         selector-type(base, -162px 114px)
         selector-type(cover, -50px 100px)
-        selector-type(chanel, -162px 114px)
+        selector-type(chanel, 34px -91px)
         selector-type(cap, -50px 100px)
         selector-type(graphics, -50px 100px)
         selector-type(pin, -156px -26px)

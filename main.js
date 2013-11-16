@@ -4,7 +4,7 @@ var IMG = {
     "cover": ['2-1.png', '2-2.png', '2-3.png', '2-4.png', '2-5.png', '2-6.png', '2-7.png', '2-8.png', '2-9.png', '2-10.png', '2-11.png', '2-12.png', '2-13.png', '2-14.png', '2-15.png', '2-16.png', '2-17.png', '2-18.png', '2-19.png', '2-20.png', '2-21.png', '2-22.png', '2-23.png', '2-24.png', ],
     "chanel": ['3-1.png', '3-2.png', '3-3.png', '3-4.png', '3-5.png', '3-6.png', '3-7.png', '3-8.png', '3-9.png', '3-10.png', '3-11.png', '3-12.png', '3-13.png', '3-14.png', '3-15.png', '3-16.png', '3-17.png', '3-18.png', '3-19.png', '3-20.png', '3-21.png', '3-22.png', '3-23.png', '3-24.png', ],
     "cap": ['5-1.png', '5-2.png', '5-3.png', '5-4.png', '5-5.png', '5-6.png', '5-7.png', '5-8.png', '5-9.png', '5-10.png', '5-11.png', '5-12.png', '5-13.png', '5-14.png', '5-15.png', '5-16.png', '5-17.png'],
-    "graphics": ['5-1.png', '5-2.png', '5-3.png', '5-4.png', '5-5.png', '5-6.png', '5-7.png', '5-8.png', '5-9.png', '5-10.png', '5-11.png', '5-12.png', '5-13.png', '5-14.png', '5-15.png', '5-16.png', '5-17.png'],
+    "graphics": ['9-1.png', '9-2.png', '9-3.png', '9-4.png', '9-5.png', '9-6.png', '9-7.png', '9-8.png'],
     "pin": ['4-1.png', '4-2.png', '4-3.png', '4-4.png', '4-5.png', '4-6.png', '4-7.png', '4-8.png', '4-9.png', '4-10.png', '4-11.png', '4-12.png', '4-13.png', '4-14.png', '4-15.png', '4-16.png', '4-17.png', '4-18.png', '4-19.png', '4-20.png', '4-21.png', '4-22.png', '4-23.png', '4-24.png'],
     "cord": ['6-1.png', '6-2.png', '6-3.png']
 }
@@ -141,7 +141,7 @@ function Step2() {
 
     var graphics = new Selector({
             type: 'graphics',
-            imgs: IMG["cap"],
+            imgs: IMG["graphics"],
             el: $('.c3', c),
             title: 'Рисунки'
         })

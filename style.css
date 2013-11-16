@@ -549,6 +549,32 @@ body {
   top: -86px;
   left: -79px;
 }
+.s2 .ear.left .graphics img {
+  top: 110px;
+  left: 10px;
+  -webkit-transform: rotate(-40deg);
+  -moz-transform: rotate(-40deg);
+  -o-transform: rotate(-40deg);
+  -ms-transform: rotate(-40deg);
+  transform: rotate(-40deg);
+}
+.s2 .ear.right .graphics {
+  -webkit-transform: scaleX(-1);
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -ms-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+.s2 .ear.right .graphics img {
+  top: 110px;
+  left: initial;
+  right: 10px;
+  -webkit-transform: rotate(40deg);
+  -moz-transform: rotate(40deg);
+  -o-transform: rotate(40deg);
+  -ms-transform: rotate(40deg);
+  transform: rotate(40deg);
+}
 .s2 .ear img {
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -605,7 +631,7 @@ body {
   background-size: initial;
 }
 .s2 .controls .selector[data-type=chanel] .selector-item {
-  background-position: -162px 114px;
+  background-position: 34px -91px;
   -webkit-background-size: initial;
   -moz-background-size: initial;
   background-size: initial;
