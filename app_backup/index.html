@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en" ng-app="monitorsConstructor">
+    <head>
+        <meta charset="utf-8">
+        <title>My HTML File</title>
+        <link href="css/reset.css" rel="stylesheet" />
+        <link href="css/style.css" rel="stylesheet" />
+
+        <script src="lib/angular/angular.js"></script>
+
+        <script src="js/app.js"></script>
+        <script src="js/controllers.js"></script>
+        <script src="js/filters.js"></script>
+        <script src="js/services.js"></script>
+    </head>
+    <body ng-controller="MonitorsList">
+        <div class="b-head">
+
+            <div class="b-logo"><a href="/"><img src="img/logo.png" alt="Ambient Acoustics" /></a></div>
+            <ol class="b-nav">
+                <li class="b-nav-item"
+                    ng-repeat="m in ['Модель','Цвет','Вставки','Рисунки','Провода','Другое','Доставка']"
+                    ng-class="{active : $index == step - 1}">{{m}}</li>
+            </ol>
+        </div>
+        <div class="b-construct" data-current="s1">
+            <div class="b-step s1" ng-show="step == 1">
+                <div class="b-models-list">
+                    <div ng-repeat="m in steps.model"
+                        ng-click="setModel($index)" 
+                        ng-class="{active: selected.model.index == $index }">
+                        {{m.name}}
+                        <span class="sub">{{m.subname}}</span>
+                    </div>
+                </div>
+
+                <div class="b-models-description">
+                    <div class="model-intro" ng-show="selected.model.index == null">
+                        <div class="wrap">
+                            <div class="header">Добро пожаловать в помощник<br/>подбора ушных мониторов</div>
+                            <div class="description">
+                                Для начала выберите одну из моделей<br/>мониторов слева и нажмите<br/>кнопку "Выбрать"
+                            </div>
+                        </div>
+                    </div>
+                    <div class="model"
+                        ng-repeat="m in steps.model"
+                        ng-class="{active: selected.model.index == $index }">
+                        <div class="model-head">
+                            <div class="col1">
+                                <img ng-src="img/{{m.img}}" />
+                            </div>
+                            <div class="col2">
+                                <div class="header" ng-bind-html="html(m.title)">{{m.title}}</div>
+                                <div class="pricing">
+                                    <span class="b-btn btn-select" ng-click="confirmModel($index)">Выбрать</span>
+                                    {{m.price}} грн
+                                </div>
+                            </div>
+                        </div>
+                        <div class="model-description">
+                            <div class="col1" ng-bind-html="html(m.description)">{{m.description}}</div>
+                            <div class="col2">
+                                <div class="specs-title">Характеристики:</div>
+                                <div class="specs" ng-repeat="s in m.specs">{{s}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="b-step s2" ng-show="step > 1">
+                <div class="col1">
+                    <div class="ears">
+                        <div class="ear {{orient}}" ng-repeat="orient in ['left', 'right']">
+                            <div ng-repeat="c in steps.color" class="ear-layer {{c.name}}">
+                                <img class="first"
+                                src="i/{{c.list[selected[orient].color[c.name]].url}}"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <script type="text/ng-template" id="selector">
+                        <div class="selector" data-type="{{c.name}}"> 
+                            <div class="selector-title">{{c.title}}</div>
+                            <div class="selector-items" ng-repeat="orient in ['left', 'right']">
+                                <div class="selector-item"
+                                    ng-repeat="i in c.list"
+                                    ng-class="{active: selected[orient].color[c.name] == $index}"
+                                    ng-click="changeColor(orient, c.name, $index)"
+                                    style="background-image: url({{'i/' + i.url}})"></div>
+                            </div>
+                        </div>
+                    </script>
+                    
+                    <div class="controls">
+                        <div class="c{{$index}}"
+                            ng-repeat="c in steps.color"
+                            ng-show="step == 2"
+                            ng-include="'selector'"
+                            >
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="col2">
+                    <div class="continue">
+                        <span class="b-btn btn-continue" ng-click="nextStep()">
+                            Продолжить
+                        </span>
+                    </div>
+                    <div class="total">
+                        <div class="header">
+                            <div class="title">Общая стоимость</div>
+                            <div class="price">3200 грн</div>
+                        </div>
+                        <div class="details">
+                            <div class="details-row">
+                                <div class="value">{{ selected.model.fullName }}</div>
+                                <div class="price">{{ selected.model.price }} грн</div>
+                            </div>
+                            <div class="details-row">
+                                <div class="value">
+                                    AM2 Vocal Edition
+                                    <div class="hint">желтый</div>
+                                </div>
+                                <div class="price">
+                                    3200 грн
+                                </div>
+                            </div>
+                            <div class="details-row">
+                                <div class="value">
+                                    AM2 Vocal Edition
+                                    <div class="hint">желтый</div>
+                                </div>
+                                <div class="price">
+                                    3200 грн
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
