@@ -16,10 +16,13 @@ monitors.controller('MonitorsList', ['$scope', '$sce', function ($scope, $sce) {
          $scope.steps[el] = _.extend({
             active: {
                 left: { id: 0 },
-                right: { id: 0 }
+                right: { id: 0 },
+                price: 0
             }
         }, CUSTOMS[el])
     })
+
+
 
     $scope.step = 1
     $scope.maxStepComplete = 0
@@ -27,7 +30,7 @@ monitors.controller('MonitorsList', ['$scope', '$sce', function ($scope, $sce) {
     $scope.same = true
 
     $scope.setModel = function(id) {
-        var m = _.extend({id: id}, $scope.steps.model[id])
+        var m = _.extend({id: id}, $scope.steps.model.list[id])
         $scope.steps.model.active = m
     }
 
@@ -44,9 +47,26 @@ monitors.controller('MonitorsList', ['$scope', '$sce', function ($scope, $sce) {
 
     $scope.select = function (orient, name, id) {
         var o = $scope.same ? ['left', 'right'] : [orient]
+            
         o.forEach(function ( o ){
             $scope.steps[name].active[o].id = id
+         
+            if (name == 'base' || name == 'chanel') {
+                if ($scope.steps['base'].active[o].id != $scope.steps['chanel'].active[o].id)
+                    $scope.steps['chanel'].active.price = 150
+                else
+                    $scope.steps['chanel'].active.price = 0
+            }
+
+
+            if (name == 'base' || name == 'pin') {
+                if ($scope.steps['base'].active[o].id != $scope.steps['pin'].active[o].id)
+                    $scope.steps['pin'].active.price = 150
+                else
+                    $scope.steps['pin'].active.price = 0
+            }
         })
+
     }
 
     $scope.html = function(html) {
@@ -524,16 +544,16 @@ var CUSTOMS = {
         name: 'cord',
         title: 'Цвет провода',
         list: [{
-            url: '6-1.png',
-            name: 'желтый',
+            url: '6-3.png',
+            name: 'серебренный',
             price: 0
         }, {
             url: '6-2.png',
-            name: 'зеленый',
+            name: 'черный',
             price: 0
         }, {
-            url: '6-3.png',
-            name: 'зеленый',
+            url: '6-1.png',
+            name: 'прозрачный',
             price: 0
         }]
     }

@@ -249,17 +249,6 @@ body
     display: table
     
     
-    &[data-active=c1], &[data-active=c2], &[data-active=c3]
-        .pin, .cord
-            display: none
-
-    &[data-active=c6]
-        .shipping
-            display: block
-        .ears, .controls, .continue
-            display: none
-
-    
     .col1, .col2
         cell()
 
@@ -290,7 +279,6 @@ body
                 position: relative
 
     .shipping
-        display: none
         position: relative
         background-color #fff
         margin: 0 40px
@@ -609,49 +597,50 @@ body
             .cord-col2
                 width: 158px
 
-        .c5
-            .misc
-                table()
-                .misc-row
-                    row()
-                    .misc-col1, .misc-col2, .misc-col3
-                        cell()
-                        padding-right: 40px
-                        padding-bottom: 25px
-                        line-height: 20px
+    .misc
+        width 700px
+        margin 0 auto
+        table()
+        .misc-row
+            row()
+            .misc-col1, .misc-col2, .misc-col3
+                cell()
+                padding-right: 40px
+                padding-bottom: 25px
+                line-height: 20px
 
-                    .misc-col1
-                        width: 260px
+            .misc-col1
+                width: 260px
 
-                    .misc-col2
-                        width: 230px
+            .misc-col2
+                width: 230px
 
-                    label
-                        color: #595959
-                        position: relative
-                        line-height: 16px
-                        margin-bottom: 6px
-                        display: inline-block
+            label
+                color: #595959
+                position: relative
+                line-height: 16px
+                margin-bottom: 6px
+                display: inline-block
 
-                        input[type=checkbox]
-                            position: absolute
-                            left: -20px
-                            top: -3px
+                input[type=checkbox]
+                    position: absolute
+                    left: -20px
+                    top: -3px
 
-                    input[type=text]
-                        width 200px
-                        color #595959
-                        font-size 13px
-                        padding: 15px
-                        outline: none
-                        background-color #f5f5f5
-                        background linear-gradient(bottom, #f5f5f5 0%, #f0f0f0 100%)
-                        &:focus
-                            background: #fff
-                        
-                    .misc-desc
-                        color #7f7f7f
+            input[type=text]
+                width 200px
+                color #595959
+                font-size 13px
+                padding: 15px
+                outline: none
+                background-color #f5f5f5
+                background linear-gradient(bottom, #f5f5f5 0%, #f0f0f0 100%)
+                &:focus
+                    background: #fff
                 
+            .misc-desc
+                color #7f7f7f
+            
 
 @media screen and (max-width: 1200px) 
     .b-head .nav

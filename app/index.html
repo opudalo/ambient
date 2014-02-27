@@ -72,7 +72,7 @@
 
             <div class="b-step s2" ng-show="step > 1">
                 <div class="col1">
-                    <div class="ears">
+                    <div class="ears" ng-show="step < 7">
                         <div class="ear {{orient}}" ng-repeat="orient in ['left', 'right']">
 
                             <div class="ear-layer {{c.name}}"
@@ -136,7 +136,7 @@
                         </div>
                     </script>
                     
-                    <div class="controls same">
+                    <div class="controls same" ng-show="step < 7">
                         <div ng-repeat="sel in [steps.base, steps.cover, steps.chanel]"
                             ng-show="step == 2"
                             ng-include="'selector'">
@@ -197,19 +197,115 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
 
 
+                    <div ng-show="step == 6">
+                        <div class="misc">
+                            <div class="misc-row">
+                                <div class="misc-col1">
+
+                                    <label>
+                                        <input type="checkbox" name="engraving" id="enrgaving" value="engraving">Гравировка кейса
+                                    </label>
+                                    <div class="misc-desc">
+                                        <input type="text" placeholder="Введите текст гравировки">
+                                    </div>
+                                </div>
+                                <div class="misc-col2">
+                                    <label>
+                                        <input type="checkbox" name="engraving" id="enrgaving" value="engraving">Сквозная вентиляция
+                                    </label>
+                                    <div class="misc-desc">
+                                        Уменьшаяет звукоизоляцию до такого уровня, что остается базовая коммуникация с залом.
+                                    </div>
+                                </div>
+                                <div class="misc-col3">
+                                    <label>
+                                        <input type="checkbox" name="engraving" id="enrgaving" value="engraving">Установка серных фильтров
+                                    </label>
+                                    <div class="misc-desc">
+                                        Используют чтобы сера и влага не попадала внутрь мониторов.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="misc-row">
+                                <div class="misc-col1">
+                                    <label>
+                                        <input type="checkbox" name="engraving" id="enrgaving" value="engraving">Замена акустических фильтров либо установка новых
+                                    </label>
+                                    <div class="misc-desc">
+                                        Влияют на характер звучания
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 
+                    <div class="shipping" ng-show="step == 7">
+                        <div class="header">Адресс доставки</div>
 
+                        <div class="shipping-form">
+                            <label data-hint="Инициалы будут отпечатаны
+    на крышке кейса">
+                                Инициалы
+                                <input type="text" name="" value="">
+                            </label>
+                            <label>
+                                Имейл
+                                <input type="text" name="" value="">
+                            </label>
+                            <label>
+                                Фамилия
+                                <input type="text" name="" value="">
+                            </label>
+                            <label>
+                                Имя
+                                <input type="text" name="" value="">
+                            </label>
+                            <label>
+                                Отчество
+                                <input type="text" name="" value="">
+                            </label>
+                            <label data-hint1="Улица, дом, квартира">
+                                Адрес
+                                <input type="text" name="" value="">
+                            </label>
+                            <label>
+                                Город
+                                <input type="text" name="" value="">
+                            </label>
+                            <label>
+                                Страна
+                                <input type="text" name="" value="">
+                            </label>
+                            <label>
+                                <span>Почтовый индекс</span>
+                                <input type="text" name="" value="">
+                            </label>
+                            <label>
+                                Телефон
+                                <input type="text" name="" value="">
+                            </label>
+                            <label>
+                                Примечания
+                                <textarea name="" gramm="" txt_gramm_id="849cca33-e74c-f02c-7529-0680172bb61b"></textarea>
+                            </label>
 
+                            <div class="btn-submit">
+                                <div class="submit b-btn">Отправить заказ</div>
+                            </div>
+                        </div>
 
                     </div>
 
 
+
+
                 </div>
                 <div class="col2">
-                    <div class="continue">
+                    <div class="continue" ng-show="step < 7">
                         <span class="b-btn btn-continue" ng-click="nextStep()">
                             Продолжить
                         </span>
@@ -221,8 +317,8 @@
                         </div>
                         <div class="details">
                             <div class="details-row">
-                                <div class="value">{{ [steps.model.list[steps.model.active.id].name, steps.model.list[steps.model.active.id].subname].join(' ')}}</div>
-                                <div class="price">{{ steps.model.list[steps.model.active.id].price }} грн</div>
+                                <div class="value">{{ [steps.model.active.name, steps.model.active.subname].join(' ')}}</div>
+                                <div class="price">{{ steps.model.active.price }} грн</div>
                             </div>
 
                             <script type="text/ng-template" id="summary-row">
@@ -230,7 +326,7 @@
                                     {{ steps[i].title }}
                                     <div class="hint">{{ getSelItem(i) }}</div>
                                 </div>
-                                <div ng-if="steps[i].list[steps.model.active.id].price" class="price">{{ steps[i].list[steps.model.active.id].price }} грн</div>
+                                <div ng-if="steps[i].active.price" class="price">{{ steps[i].active.price }} грн</div>
                             </script>
                             <div class="details-row" ng-repeat="i in ['base', 'cover', 'chanel']"
                                 ng-show="maxStepComplete > 1"
