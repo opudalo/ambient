@@ -73,7 +73,7 @@
 
             <div class="b-step s2" ng-show="step > 1">
                 <div class="col1">
-                    <div class="switcher-wrap">
+                    <div class="switcher-wrap" ng-show="step < 7">
                         <div class="switcher">
                             <div ng-click="setSame(true)" ng-class="{active: same}">одинаковые</div>
                             <div ng-click="setSame(false)" ng-class="{active: !same}">разные</div>
