@@ -67,8 +67,11 @@ monitors.controller('MonitorsList', ['$scope', '$sce', function ($scope, $sce) {
 
     $scope.step = 1
     $scope.maxStepComplete = 0
-    // $('.controls.same')
     $scope.same = true
+  
+    $scope.setSame = function(val) {
+        $scope.same = val
+    }
 
     $scope.setModel = function(id) {
         var m = _.extend({id: id}, $scope.steps.model.list[id])
@@ -103,7 +106,7 @@ monitors.controller('MonitorsList', ['$scope', '$sce', function ($scope, $sce) {
     }
 
     $scope.select = function (orient, name, id) {
-        var o = $scope.same ? ['left', 'right'] : [orient]
+        var o = ($scope.same || name == 'cord') ? ['left', 'right'] : [orient]
             
         o.forEach(function ( o ){
             $scope.steps[name].active[o].id = id
@@ -147,6 +150,9 @@ monitors.controller('MonitorsList', ['$scope', '$sce', function ($scope, $sce) {
 
     //test
     $scope.confirmModel(1)
+    $scope.nextStep()
+    $scope.nextStep()
+    $scope.nextStep()
 
 }])
 

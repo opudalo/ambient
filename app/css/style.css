@@ -531,6 +531,41 @@ body {
 .s2 .ear.left {
   float: left;
 }
+.s2 .switcher-wrap {
+  text-align: center;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.s2 .switcher-wrap .switcher {
+  background-color: #0f0f0f;
+  -webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.05), inset 0 5px 5px rgba(0,0,0,0.75);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.05), inset 0 5px 5px rgba(0,0,0,0.75);
+  display: inline-block;
+  padding: 2px;
+  color: #b2b2b2;
+  font-family: "Helvetica";
+  font-size: 13px;
+  font-weight: normal;
+}
+.s2 .switcher-wrap .switcher div {
+  cursor: pointer;
+  padding: 7px 18px;
+  float: left;
+  display: inline-block;
+}
+.s2 .switcher-wrap .switcher div.active {
+  color: #ffa901;
+  background-color: #191919;
+  -webkit-box-shadow: 0 3px 1px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+  box-shadow: 0 3px 1px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+  background: -webkit-linear-gradient(bottom, rgba(0,0,0,0.13) 0%, rgba(255,255,255,0.13) 100%);
+  background: -moz-linear-gradient(bottom, rgba(0,0,0,0.13) 0%, rgba(255,255,255,0.13) 100%);
+  background: -o-linear-gradient(bottom, rgba(0,0,0,0.13) 0%, rgba(255,255,255,0.13) 100%);
+  background: -ms-linear-gradient(bottom, rgba(0,0,0,0.13) 0%, rgba(255,255,255,0.13) 100%);
+  background: linear-gradient(bottom, rgba(0,0,0,0.13) 0%, rgba(255,255,255,0.13) 100%);
+}
 .s2 .controls {
   margin: 0 auto;
   width: 710px;
@@ -593,13 +628,24 @@ body {
   -moz-background-size: 400px;
   background-size: 400px;
 }
+.s2 .controls .selector[data-type=cord] .selector-items {
+  width: 100% !important;
+}
+.s2 .controls .selector[data-type=cord] .selector-items.right {
+  display: none !important;
+}
 .s2 .controls .selector-title {
   line-height: 35px;
 }
 .s2 .controls .selector-items {
   display: inline-block;
+  width: 50%;
+  float: left;
 }
-.s2 .controls.same .selector-items.right {
+.s2 .controls .selector.same .selector-items {
+  width: 100%;
+}
+.s2 .controls .selector.same .selector-items.right {
   display: none;
 }
 .s2 .controls .selector-item {
@@ -614,6 +660,7 @@ body {
   box-shadow: 0 2px 4px rgba(0,0,0,0.47), inset 0 0 0 1px rgba(255,255,255,0.05);
   cursor: pointer;
   margin-right: 5px;
+  margin-bottom: 5px;
 }
 .s2 .controls .selector-item::after {
   content: '';

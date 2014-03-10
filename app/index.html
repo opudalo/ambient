@@ -13,6 +13,7 @@
         <script src="js/controllers.js"></script>
         <script src="js/filters.js"></script>
         <script src="js/services.js"></script>
+        <link href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700&amp;subset=latin,cyrillic" rel="stylesheet" type="text/css">
     </head>
     <body ng-controller="MonitorsList">
         <div class="b-head">
@@ -72,6 +73,12 @@
 
             <div class="b-step s2" ng-show="step > 1">
                 <div class="col1">
+                    <div class="switcher-wrap">
+                        <div class="switcher">
+                            <div ng-click="setSame(true)" ng-class="{active: same}">одинаковые</div>
+                            <div ng-click="setSame(false)" ng-class="{active: !same}">разные</div>
+                        </div>
+                    </div>
                     <div class="ears" ng-show="step < 7">
                         <div class="ear {{orient}}" ng-repeat="orient in ['left', 'right']">
 
@@ -111,7 +118,7 @@
                     </div>
 
                     <script type="text/ng-template" id="selector">
-                        <div class="selector" data-type="{{sel.name}}"> 
+                      <div class="selector" ng-class="{same: same}" data-type="{{sel.name}}"> 
                             <div class="selector-title">{{sel.title}}</div>
                             <div class="selector-items {{orient}}" ng-repeat="orient in ['left', 'right']">
                                 <div class="selector-item"
@@ -123,20 +130,7 @@
                         </div>
                     </script>
 
-                    <script type="text/ng-template" id="selectorSingle">
-                        <div class="selector" data-type="{{sel.name}}"> 
-                            <div class="selector-title">{{sel.title}}</div>
-                            <div class="selector-items">
-                                <div class="selector-item"
-                                    ng-repeat="i in sel.list"
-                                    ng-class="{active: sel.active.id == $index}"
-                                    ng-click="select('', sel.name, $index)"
-                                    style="background-image: url({{'i/' + i.url}})"></div>
-                            </div>
-                        </div>
-                    </script>
-                    
-                    <div class="controls same" ng-show="step < 7">
+                    <div class="controls" ng-show="step < 7">
                         <div ng-repeat="sel in [steps.base, steps.cover, steps.chanel]"
                             ng-show="step == 2"
                             ng-include="'selector'">
