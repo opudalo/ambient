@@ -164,10 +164,10 @@
                                         <div class="selector-title">Тип джека</div>
                                         <div class="selector-radio">
                                             <label for="angle"><img src="i/7-1.png"></label> 
-                                            <input type="radio" checked name="jack-selector" id="angle" value="angle" />
+                                            <input type="radio" ng-model="steps.jack.active" ng-value="steps.jack.angle" />
 
                                             <label for="straight"><img src="i/7-2.png"></label>
-                                            <input type="radio" name="jack-selector" id="straight" value="straight" />
+                                            <input type="radio" ng-model="steps.jack.active" ng-value="steps.jack.straight" />
                                         </div>
                                     </div>
                                 </div>
@@ -181,15 +181,15 @@
                                         <div class="selector-title">Длина провода</div>
                                         <div class="selector-radio">
                                             <div>
-                                                <input type="radio" checked name="length-selector" id="l100" value="l100" />
+                                                <input type="radio" ng-model="steps.cordLength.active" value="small" />
                                                 <label for="l100">100 см <img src="i/8-1.png"></label> 
                                             </div>
                                             <div>
-                                                <input type="radio" name="length-selector" id="l130" value="l130" />
+                                                <input type="radio" ng-model="steps.cordLength.active" value="medium" />
                                                 <label for="l130">130 см <img src="i/8-2.png"></label>
                                             </div>
                                             <div>
-                                                <input type="radio" name="length-selector" id="l160" value="l160" />
+                                                <input type="radio" ng-model="steps.cordLength.active" value="large" />
                                                 <label for="l160">160 см <img src="i/8-3.png"></label>
                                             </div>
                                         </div>
@@ -206,15 +206,15 @@
                                 <div class="misc-col1">
 
                                     <label>
-                                        <input type="checkbox" name="engraving" id="enrgaving" value="engraving">Гравировка кейса
+                                        <input type="checkbox" ng-model="steps.engraving.active">Гравировка кейса
                                     </label>
-                                    <div class="misc-desc">
-                                        <input type="text" placeholder="Введите текст гравировки">
+                                    <div class="misc-desc" ng-show="steps.engraving.active">
+                                        <input type="text" placeholder="Введите текст гравировки" ng-model="steps.engraving.text">
                                     </div>
                                 </div>
                                 <div class="misc-col2">
                                     <label>
-                                        <input type="checkbox" name="engraving" id="enrgaving" value="engraving">Сквозная вентиляция
+                                        <input type="checkbox" ng-model="steps.ventilation.active">Сквозная вентиляция
                                     </label>
                                     <div class="misc-desc">
                                         Уменьшаяет звукоизоляцию до такого уровня, что остается базовая коммуникация с залом.
@@ -222,7 +222,7 @@
                                 </div>
                                 <div class="misc-col3">
                                     <label>
-                                        <input type="checkbox" name="engraving" id="enrgaving" value="engraving">Установка серных фильтров
+                                        <input type="checkbox" ng-model="steps.filterSulfur">Установка серных фильтров
                                     </label>
                                     <div class="misc-desc">
                                         Используют чтобы сера и влага не попадала внутрь мониторов.
@@ -232,7 +232,7 @@
                             <div class="misc-row">
                                 <div class="misc-col1">
                                     <label>
-                                        <input type="checkbox" name="engraving" id="enrgaving" value="engraving">Замена акустических фильтров либо установка новых
+                                        <input type="checkbox" ng-model="steps.filterAcoustic">Замена акустических фильтров либо установка новых
                                     </label>
                                     <div class="misc-desc">
                                         Влияют на характер звучания
@@ -250,47 +250,47 @@
                             <label data-hint="Инициалы будут отпечатаны
     на крышке кейса">
                                 Инициалы
-                                <input type="text" name="" value="">
+                                <input type="text" ng-model="steps.customer.userName"/>
                             </label>
                             <label>
                                 Имейл
-                                <input type="text" name="" value="">
+                                <input type="text" ng-model="steps.customer.email"/>
                             </label>
                             <label>
                                 Фамилия
-                                <input type="text" name="" value="">
+                                <input type="text" ng-model="steps.customer.surname"/>
                             </label>
                             <label>
                                 Имя
-                                <input type="text" name="" value="">
+                                <input type="text" ng-model="steps.customer.name"/>
                             </label>
                             <label>
                                 Отчество
-                                <input type="text" name="" value="">
+                                <input type="text" ng-model="steps.customer.secondName"/>
                             </label>
                             <label data-hint1="Улица, дом, квартира">
                                 Адрес
-                                <input type="text" name="" value="">
+                                <input type="text" ng-model="steps.customer.address"/>
                             </label>
                             <label>
                                 Город
-                                <input type="text" name="" value="">
+                                <input type="text" ng-model="steps.customer.city"/>
                             </label>
                             <label>
                                 Страна
-                                <input type="text" name="" value="">
+                                <input type="text" ng-model="steps.customer.country"/>
                             </label>
                             <label>
                                 <span>Почтовый индекс</span>
-                                <input type="text" name="" value="">
+                                <input type="text" ng-model="steps.customer.zip"/>
                             </label>
                             <label>
                                 Телефон
-                                <input type="text" name="" value="">
+                                <input type="text" ng-model="steps.customer.phone"/>
                             </label>
                             <label>
                                 Примечания
-                                <textarea name="" gramm="" txt_gramm_id="849cca33-e74c-f02c-7529-0680172bb61b"></textarea>
+                                <textarea ng-model="steps.customer.misc"></textarea>
                             </label>
 
                             <div class="btn-submit">
@@ -313,7 +313,7 @@
                     <div class="total">
                         <div class="header">
                             <div class="title">Общая стоимость</div>
-                            <div class="price">3200 грн</div>
+                            <div class="price">{{ totalPrice() }} грн</div>
                         </div>
                         <div class="details">
                             <div class="details-row">
@@ -347,6 +347,48 @@
                                 ng-show="maxStepComplete > 4"
                                 ng-include="'summary-row'"
                             ></div>
+                          
+                            <div class="details-row" ng-show="maxStepComplete > 4">
+                                <div class="value">
+                                    Тип джека
+                                    <div class="hint">{{ steps.jack.active }}</div>
+                                </div>
+                            </div>
+
+                            <div class="details-row" ng-show="maxStepComplete > 4">
+                                <div class="value">
+                                    Длина провода
+                                    <div class="hint">{{ steps.cordLength[steps.cordLength.active].name }}</div>
+                                </div>
+                                <div ng-if="steps.cordLength[steps.cordLength.active].price" class="price">{{ steps.cordLength[steps.cordLength.active].price }} грн</div>
+                            </div>
+
+                            <div class="details-row" ng-show="steps.engraving.active && steps.engraving.text.length > 0">
+                                <div class="value">
+                                    Гравировка кейса
+                                    <div class="hint">{{ steps.engraving.text }}</div>
+                                </div>
+                            </div>
+
+                            <div class="details-row" ng-show="steps.ventilation.active">
+                                <div class="value">
+                                    Сквозная вентиляция
+                                </div>
+                                <div class="price">{{ steps.ventilation.price }} грн</div>
+                            </div>
+
+                            <div class="details-row" ng-show="steps.filterSulfur">
+                                <div class="value">
+                                    Установка серных фильтров
+                                </div>
+                            </div>
+
+                            <div class="details-row" ng-show="steps.filterAcoustic">
+                                <div class="value">
+                                  Замена акустических фильтров либо установка новых
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
