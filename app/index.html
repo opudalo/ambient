@@ -56,7 +56,7 @@
                                 <div class="header" ng-bind-html="html(m.title)">{{m.title}}</div>
                                 <div class="pricing">
                                     <span class="b-btn btn-select" ng-click="confirmModel($index)">Выбрать</span>
-                                    {{m.price}} грн
+                                    {{m.price}}$
                                 </div>
                             </div>
                         </div>
@@ -307,7 +307,7 @@
                     <div class="total">
                         <div class="header">
                             <div class="title">Общая стоимость</div>
-                            <div class="price">{{ totalPrice() }} грн</div>
+                            <div class="price">{{ totalPrice() }}$</div>
                         </div>
                         <div class="details">
                             <div class="details-row">
