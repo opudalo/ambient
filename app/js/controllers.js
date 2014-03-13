@@ -30,6 +30,7 @@ monitors.controller('MonitorsList', ['$scope', '$sce', function ($scope, $sce) {
         },
         engraving: {
           active: false,
+          price: 10,
           text: ''
         },
         ventilation: {
