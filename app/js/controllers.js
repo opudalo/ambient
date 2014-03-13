@@ -20,7 +20,7 @@ monitors.controller('MonitorsList', ['$scope', '$sce', function ($scope, $sce) {
           },
           large: {
             name: '160см',
-            price: 150
+            price: 5
           }
         },
         jack: {
@@ -34,7 +34,7 @@ monitors.controller('MonitorsList', ['$scope', '$sce', function ($scope, $sce) {
         },
         ventilation: {
           active: false,
-          price: 150
+          price: 20
         },
         filterSulfur: false,
         filterAcoustic: false,
@@ -113,7 +113,7 @@ monitors.controller('MonitorsList', ['$scope', '$sce', function ($scope, $sce) {
          
             if (name == 'base' || name == 'chanel') {
                 if ($scope.steps['base'].active[o].id != $scope.steps['chanel'].active[o].id)
-                    $scope.steps['chanel'].active.price = 150
+                    $scope.steps['chanel'].active.price = 15
                 else
                     $scope.steps['chanel'].active.price = 0
             }
@@ -124,7 +124,7 @@ monitors.controller('MonitorsList', ['$scope', '$sce', function ($scope, $sce) {
 
             if (name == 'base' || name == 'pin') {
                 if ($scope.steps['base'].active[o].id != $scope.steps['pin'].active[o].id)
-                    $scope.steps['pin'].active.price = 150
+                    $scope.steps['pin'].active.price = 20
                 else
                     $scope.steps['pin'].active.price = 0
             }
