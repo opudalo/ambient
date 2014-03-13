@@ -312,7 +312,7 @@
                         <div class="details">
                             <div class="details-row">
                                 <div class="value">{{ [steps.model.active.name, steps.model.active.subname].join(' ')}}</div>
-                                <div class="price">{{ steps.model.active.price }} грн</div>
+                                <div class="price">{{ steps.model.active.price }}$</div>
                             </div>
 
                             <script type="text/ng-template" id="summary-row">
@@ -320,7 +320,7 @@
                                     {{ steps[i].title }}
                                     <div class="hint">{{ getSelItem(i) }}</div>
                                 </div>
-                                <div ng-if="steps[i].active.price" class="price">{{ steps[i].active.price }} грн</div>
+                                <div ng-if="steps[i].active.price" class="price">{{ steps[i].active.price }}$</div>
                             </script>
                             <div class="details-row" ng-repeat="i in ['base', 'cover', 'chanel']"
                                 ng-show="maxStepComplete > 1"
@@ -354,7 +354,7 @@
                                     Длина провода
                                     <div class="hint">{{ steps.cordLength[steps.cordLength.active].name }}</div>
                                 </div>
-                                <div ng-if="steps.cordLength[steps.cordLength.active].price" class="price">{{ steps.cordLength[steps.cordLength.active].price }} грн</div>
+                                <div ng-if="steps.cordLength[steps.cordLength.active].price" class="price">{{ steps.cordLength[steps.cordLength.active].price }}$</div>
                             </div>
 
                             <div class="details-row" ng-show="steps.engraving.active && steps.engraving.text.length > 0">
@@ -368,7 +368,7 @@
                                 <div class="value">
                                     Сквозная вентиляция
                                 </div>
-                                <div class="price">{{ steps.ventilation.price }} грн</div>
+                                <div class="price">{{ steps.ventilation.price }}$</div>
                             </div>
 
                             <div class="details-row" ng-show="steps.filterSulfur">
