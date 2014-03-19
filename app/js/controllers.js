@@ -5,6 +5,8 @@ var monitors = angular.module('monitorsConstructor', [])
 
 monitors.controller('MonitorsList', ['$scope', '$sce', function ($scope, $sce) {
 
+    new Tooltip()
+
     $scope.steps = {
         model: {
             active: { id: null },
@@ -65,7 +67,6 @@ monitors.controller('MonitorsList', ['$scope', '$sce', function ($scope, $sce) {
     })
 
 
-
     $scope.step = 1
     $scope.maxStepComplete = 0
     $scope.same = true
@@ -84,6 +85,10 @@ monitors.controller('MonitorsList', ['$scope', '$sce', function ($scope, $sce) {
         $scope.setModel(id)
     }
 
+    $scope.prevStep = function () {
+        $scope.step-- 
+    }
+
     $scope.nextStep = function () {
         $scope.step++ 
         $scope.maxStepComplete = Math.max($scope.maxStepComplete, $scope.step)
@@ -99,6 +104,8 @@ monitors.controller('MonitorsList', ['$scope', '$sce', function ($scope, $sce) {
 
         var v = $scope.steps.ventilation
         if (v.active) price += v.price
+
+        if ($scope.steps.engraving.text != '') price += $scope.steps.engraving.price
 
         var c = $scope.steps.cordLength
         price += c[c.active].price || 0
@@ -129,6 +136,8 @@ monitors.controller('MonitorsList', ['$scope', '$sce', function ($scope, $sce) {
                 else
                     $scope.steps['pin'].active.price = 0
             }
+            if (name == 'cap')
+              $scope.steps['cap'].active.price = (id == 0) && 0 || 20
         })
 
     }
@@ -150,7 +159,7 @@ monitors.controller('MonitorsList', ['$scope', '$sce', function ($scope, $sce) {
 
 
     //test
-    //$scope.confirmModel(1)
+    $scope.confirmModel(1)
     //$scope.nextStep()
 
 }])
@@ -397,71 +406,71 @@ var CUSTOMS = {
         }, {
             url: '5-1.png',
             name: 'красный карбон',
-            price: 10
+            price: 20
         }, {
             url: '5-2.png',
             name: 'серо-черный карбон ',
-            price: 10
+            price: 20
         }, {
             url: '5-3.png',
             name: 'золотистый 3D карбон',
-            price: 10
+            price: 20
         }, {
             url: '5-4.png',
             name: 'белый 3D карбон',
-            price: 10
+            price: 20
         }, {
             url: '5-5.png',
             name: 'черный 3D карбон',
-            price: 10
+            price: 20
         }, {
             url: '5-6.png',
             name: 'черный',
-            price: 10
+            price: 20
         }, {
             url: '5-7.png',
             name: 'серебристый 3D карбон',
-            price: 10
+            price: 20
         }, {
             url: '5-8.png',
             name: 'синий 3D карбон',
-            price: 10
+            price: 20
         }, {
             url: '5-9.png',
             name: 'зеркально-золотистый',
-            price: 10
+            price: 20
         }, {
             url: '5-10.png',
             name: 'шлифованный алюминий',
-            price: 10
+            price: 20
         }, {
             url: '5-11.png',
             name: 'черная кожа',
-            price: 10
+            price: 20
         }, {
             url: '5-12.png',
             name: 'Matrix 3D',
-            price: 10
+            price: 20
         }, {
             url: '5-13.png',
             name: 'глянцевый серый хром',
-            price: 10
+            price: 20
         }, {
             url: '5-14.png',
             name: 'шлифованный хром',
-            price: 10
+            price: 20
         }, {
             url: '5-15.png',
             name: 'битое стекло',
-            price: 10
+            price: 20
         }, {
             url: '5-16.png',
             name: 'алмазная крошка',
-            price: 10
+            price: 20
         }, {
             url: '5-17.png',
             name: 'шлифованное золото',
-            price: 10
+            price: 20
         }]
     },
     'graphics': {

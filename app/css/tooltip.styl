@@ -1,0 +1,49 @@
+.tooltip
+    position: absolute
+    left: 50%
+    opacity: 0
+    top: -9999px
+    z-index: 2000
+    display: inline-block
+
+    &.active
+        opacity: 1
+        transition: opacity .2s ease-out 0.4s
+    
+    &.active.bottom
+        margin-top: 10px
+
+        &::after
+            top: -11px;
+            width: 0;
+            height: 0;
+            border-bottom: 7px solid #212121;
+            border-top:none
+
+
+
+    &::before 
+        content: attr(data-content)
+        position: relative
+        color #fff
+        font-size 14px
+        opacity: .9
+        background-color #212121
+        padding: 6px 8px
+        white-space: nowrap
+
+    &::after
+        content: ""
+        position: absolute
+        opacity: .9
+        left: 50%
+        top: 25px
+        width: 0
+        height: 0
+        margin-left: -8px
+        border-top: 7px solid #212121
+        border-left: 8px solid transparent
+        border-right: 8px solid transparent
+
+
+

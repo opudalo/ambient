@@ -4,10 +4,13 @@
         <meta charset="utf-8">
         <title>Создай свой кастом</title>
         <link href="css/reset.css" rel="stylesheet" />
+        <link href="css/tooltip.css" rel="stylesheet" />
         <link href="css/style.css" rel="stylesheet" />
 
         <script src="lib/angular/angular.js"></script>
         <script src="lib/lodash.min.js"></script>
+        <script src="lib/jquery/jquery-1.10.2.min.js"></script>
+        <script src="lib/tooltip.js"></script>
 
         <script src="js/app.js"></script>
         <script src="js/controllers.js"></script>
@@ -118,13 +121,15 @@
                     </div>
 
                     <script type="text/ng-template" id="selector">
-                      <div class="selector" ng-class="{same: same}" data-type="{{sel.name}}"> 
+                        <div class="selector" ng-class="{same: same}" data-type="{{sel.name}}"> 
                             <div class="selector-title">{{sel.title}}</div>
                             <div class="selector-items {{orient}}" ng-repeat="orient in ['left', 'right']">
                                 <div class="selector-item"
                                     ng-repeat="i in sel.list"
                                     ng-class="{active: sel.active[orient].id == $index}"
                                     ng-click="select(orient, sel.name, $index)"
+                                    data-tooltip="{{i.name}}"
+                                    data-tooltip-position="top"
                                     style="background-image: url({{'i/' + i.url}})"></div>
                             </div>
                         </div>
@@ -300,6 +305,9 @@
                 </div>
                 <div class="col2">
                     <div class="continue" ng-show="step < 7">
+                        <span class="b-btn btn-back" ng-click="prevStep()">
+                            Назад
+                        </span>
                         <span class="b-btn btn-continue" ng-click="nextStep()">
                             Продолжить
                         </span>
@@ -362,6 +370,7 @@
                                     Гравировка кейса
                                     <div class="hint">{{ steps.engraving.text }}</div>
                                 </div>
+                                <div ng-if="steps.engraving.text != ''" class="price">{{ steps.engraving.price }}$</div>
                             </div>
 
                             <div class="details-row" ng-show="steps.ventilation.active">

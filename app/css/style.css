@@ -82,6 +82,28 @@ body {
   font-weight: bold;
   text-shadow: 0 1px 0 rgba(252,255,164,0.45);
 }
+.b-btn.btn-continue,
+.b-btn.btn-back {
+  float: left;
+  -webkit-box-shadow: 0 0px 0px 1px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.5), inset 0 0 2px rgba(255,255,255,0.3);
+  box-shadow: 0 0px 0px 1px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.5), inset 0 0 2px rgba(255,255,255,0.3);
+}
+.b-btn.btn-continue {
+  width: 60%;
+}
+.b-btn.btn-continue::after {
+  content: url("../img/rarr.png");
+  top: 2px;
+  position: relative;
+}
+.b-btn.btn-back {
+  width: 40%;
+}
+.b-btn.btn-back::before {
+  content: url("../img/larr.png");
+  top: 2px;
+  position: relative;
+}
 .s1 .model {
   display: none;
 }
@@ -288,15 +310,6 @@ body {
   -webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.05), inset 0 5px 5px rgba(0,0,0,0.75);
   box-shadow: 0 1px 0 rgba(255,255,255,0.05), inset 0 5px 5px rgba(0,0,0,0.75);
   text-align: center;
-}
-.s2 .continue .b-btn {
-  width: 100%;
-}
-.s2 .continue .b-btn::after {
-  content: url("../img/rarr.png");
-  margin-left: 10px;
-  top: 2px;
-  position: relative;
 }
 .s2 .shipping {
   position: relative;
@@ -871,4 +884,16 @@ body {
   .s1 .b-models-list > div::after {
     width: 225px;
   }
+}
+.tooltip::before {
+  padding: 4px 10px;
+  background: #fff;
+  color: #000;
+  -webkit-border-radius: 12px;
+  border-radius: 12px;
+  font-size: 12px;
+}
+.tooltip::after {
+  top: 21px;
+  border-top-color: #fff;
 }
