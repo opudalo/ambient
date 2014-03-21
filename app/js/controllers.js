@@ -41,6 +41,30 @@ monitors.controller('MonitorsList', ['$scope', '$sce', function ($scope, $sce) {
         },
         filterSulfur: false,
         filterAcoustic: false,
+        fabricCase: {
+          active: false,
+          price: 2.5
+        },
+        drierCapsule: {
+          active: false,
+          price: 2.5
+        },
+        sulfurStick: {
+          active: false,
+          price: 3
+        },
+        aaCord: {
+          active: false,
+          price: 45
+        },
+        namedCase: {
+          active: false,
+          price: 30
+        },
+        cutomPin: {
+          active: false,
+          price: 7.5
+        },
         customer: {
           userName: '',
           email: '',
@@ -110,7 +134,27 @@ monitors.controller('MonitorsList', ['$scope', '$sce', function ($scope, $sce) {
         var c = $scope.steps.cordLength
         price += c[c.active].price || 0
 
+        var c = $scope.steps.cordLength
+        price += c[c.active].price || 0
+
+
+        if ($scope.steps.model.active.custom) price += sumCustom()
+
         return price
+
+        function sumCustom () {
+          var sum = 0
+        
+          ;['fabricCase', 'drierCapsule', 'sulfurStick', 'namedCase', 'aaCord'].forEach(function ( el ) {
+            var s = $scope.steps[el]
+
+            if (!s.active) return
+
+            sum += s.price
+          })
+
+          return sum
+        }
     }
 
     $scope.select = function (orient, name, id) {
@@ -119,26 +163,54 @@ monitors.controller('MonitorsList', ['$scope', '$sce', function ($scope, $sce) {
         o.forEach(function ( o ){
             $scope.steps[name].active[o].id = id
          
-            if (name == 'base' || name == 'chanel') {
-                if ($scope.steps['base'].active[o].id != $scope.steps['chanel'].active[o].id)
-                    $scope.steps['chanel'].active.price = 15
-                else
-                    $scope.steps['chanel'].active.price = 0
-            }
 
             if (name == 'base' && $scope.maxStepComplete == 2) {
               $scope.steps['pin'].active[o].id = id
             }
-
-            if (name == 'base' || name == 'pin') {
-                if ($scope.steps['base'].active[o].id != $scope.steps['pin'].active[o].id)
-                    $scope.steps['pin'].active.price = 20
-                else
-                    $scope.steps['pin'].active.price = 0
-            }
-            if (name == 'cap')
-              $scope.steps['cap'].active.price = (id == 0) && 0 || 20
         })
+
+        if (name == 'cap') capPrice(id)
+        if (name == 'base' || name == 'chanel') chanelPrice()
+        if (name == 'base' || name == 'pin') pinPrice()
+
+        function capPrice(id) {
+          if (id != 0) return $scope.steps['cap'].active.price = 20
+          var active = $scope.steps['cap'].active
+          if (active.left.id == active.right.id) $scope.steps['cap'].active.price = 0 
+        }
+
+        function pinPrice(id) {
+          checkSimilar({
+            setTo: 'pin',
+            compareTo: 'base',
+            price: 20
+          })
+        }  
+
+        function chanelPrice(id) {
+          checkSimilar({
+            setTo: 'chanel',
+            compareTo: 'base',
+            price: 15
+          })
+        }
+
+        function checkSimilar(cfg) {
+          var setTo = cfg.setTo,
+            compareTo = cfg.compareTo,
+            price = cfg.price
+              
+          var c = $scope.steps[compareTo].active,
+            s = $scope.steps[setTo].active
+
+          $scope.steps[setTo].active.price = 0
+
+          ;['left', 'right'].forEach(function ( o ){
+            if (c[o].id == s[o].id) return
+            $scope.steps[setTo].active.price = price
+          })
+        }
+
 
     }
 
@@ -159,8 +231,10 @@ monitors.controller('MonitorsList', ['$scope', '$sce', function ($scope, $sce) {
 
 
     //test
-    //$scope.confirmModel(1)
-    //$scope.nextStep()
+    $scope.confirmModel(6)
+    $scope.nextStep()
+    $scope.nextStep()
+    $scope.nextStep()
 
 }])
 
@@ -478,7 +552,7 @@ var CUSTOMS = {
         title: 'Рисунки',
         list: [{
             url: '0.png',
-            name: 'без рисунков',
+            name: 'без рисунков'
         }, {
             url: '9-1.png',
             name: 'белый лого',
@@ -723,6 +797,7 @@ var MODELS = [{
         'Импеданс (500 Гц) – 25 Ом'
     ]
 },{
+    custom: true,
     name: 'Кастомизация наушников',
     img: 'am2.png',
     title: 'Кастомизация наушников',

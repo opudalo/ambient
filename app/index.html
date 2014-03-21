@@ -76,7 +76,7 @@
 
             <div class="b-step s2" ng-show="step > 1">
                 <div class="col1">
-                    <div class="switcher-wrap" ng-show="step < 7">
+                  <div class="switcher-wrap" ng-show="step < 7" ng-class="{hidden: step > 5}">
                         <div class="switcher">
                             <div ng-click="setSame(true)" ng-class="{active: same}">одинаковые</div>
                             <div ng-click="setSame(false)" ng-class="{active: !same}">разные</div>
@@ -150,13 +150,35 @@
                             ng-show="step == 4"
                             ng-include="'selector'">
                         </div>
-                        
+
+                        <div class="misc misc__custom" ng-show="(step == 5) && steps.model.active.custom">
+                            <div class="misc-row">
+                                <div class="misc-col1">
+
+                                    <label>
+                                        <input type="checkbox" ng-model="steps.model.customPin.active">Замена разъемов либо установка новых
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+ 
                         <div ng-repeat="sel in [steps.pin]"
-                            ng-show="step == 5"
+                            ng-show="(step == 5) && steps.model.customPin.active"
                             ng-include="'selector'">
                         </div>
 
-                        <div ng-show="step == 5">
+                        <div class="misc misc__custom" ng-show="(step == 5) && steps.model.active.custom">
+                            <div class="misc-row">
+                                <div class="misc-col1">
+
+                                    <label>
+                                        <input type="checkbox" ng-model="steps.model.aaCord.active">Витой кастомный провод Ambient Acoustics 
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-show="(step == 5) && steps.model.aaCord.active">
                             <div class="cord-table">
                                 <div class="cord-col1">
                                     <div class="selector jack-selector">
@@ -228,14 +250,28 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="misc-row">
+                            <div class="misc-row" ng-show="steps.model.active.custom">
                                 <div class="misc-col1">
                                     <label>
-                                        <input type="checkbox" ng-model="steps.filterAcoustic">Замена акустических фильтров либо установка новых
+                                        <input type="checkbox" ng-model="steps.namedCase.active">Именной влагозащитный кейс
                                     </label>
-                                    <div class="misc-desc">
-                                        Влияют на характер звучания
-                                    </div>
+                                </div>
+                                <div class="misc-col2">
+                                    <label>
+                                        <input type="checkbox" ng-model="steps.sulfurStick.active">Присбособление для извлечения серы и грязи
+                                    </label>
+                                </div>
+                                <div class="misc-col3">
+                                    <label>
+                                        <input type="checkbox" ng-model="steps.drierCapsule.active">Осушающая капсула
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="misc-row" ng-show="steps.model.active.custom">
+                                <div class="misc-col1">
+                                    <label>
+                                        <input type="checkbox" ng-model="steps.fabricCase.active">Тканевый чехол
+                                    </label>
                                 </div>
                             </div>
                         </div>
@@ -349,7 +385,14 @@
                                 ng-show="maxStepComplete > 4"
                                 ng-include="'summary-row'"
                             ></div>
-                          
+
+                            <div class="details-row" ng-show="steps.model.active.custom && steps.aaCord.active">
+                                <div class="value">
+                                    Провод Ambient Acoustics
+                                </div>
+                                <div class="price">{{ steps.aaCord.price }}$</div>
+                            </div>
+ 
                             <div class="details-row" ng-show="maxStepComplete > 4">
                                 <div class="value">
                                     Тип джека
@@ -392,6 +435,33 @@
                                 </div>
                             </div>
 
+                            <div class="details-row" ng-show="steps.model.active.custom && steps.namedCase.active">
+                                <div class="value">
+                                    Именной влагозащитный кейс
+                                </div>
+                                <div class="price">{{ steps.namedCase.price }}$</div>
+                            </div>
+                            
+                            <div class="details-row" ng-show="steps.model.active.custom && steps.sulfurStick.active">
+                                <div class="value">
+                                    Присбособление для извлечения серы и грязи
+                                </div>
+                                <div class="price">{{ steps.sulfurStick.price }}$</div>
+                            </div>
+
+                            <div class="details-row" ng-show="steps.model.active.custom && steps.drierCapsule.active">
+                                <div class="value">
+                                    Осушающая капсула
+                                </div>
+                                <div class="price">{{ steps.drierCapsule.price }}$</div>
+                            </div>
+
+                            <div class="details-row" ng-show="steps.model.active.custom && steps.fabricCase.active">
+                                <div class="value">
+                                    Тканевый чехол
+                                </div>
+                                <div class="price">{{ steps.fabricCase.price }}$</div>
+                            </div>
                         </div>
                     </div>
                 </div>
