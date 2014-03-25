@@ -61,7 +61,7 @@ monitors.controller('MonitorsList', ['$scope', '$sce', function ($scope, $sce) {
           active: false,
           price: 30
         },
-        cutomPin: {
+        customPin: {
           active: false,
           price: 7.5
         },
@@ -134,9 +134,6 @@ monitors.controller('MonitorsList', ['$scope', '$sce', function ($scope, $sce) {
         var c = $scope.steps.cordLength
         price += c[c.active].price || 0
 
-        var c = $scope.steps.cordLength
-        price += c[c.active].price || 0
-
 
         if ($scope.steps.model.active.custom) price += sumCustom()
 
@@ -145,7 +142,7 @@ monitors.controller('MonitorsList', ['$scope', '$sce', function ($scope, $sce) {
         function sumCustom () {
           var sum = 0
         
-          ;['fabricCase', 'drierCapsule', 'sulfurStick', 'namedCase', 'aaCord'].forEach(function ( el ) {
+          ;['fabricCase', 'drierCapsule', 'sulfurStick', 'namedCase', 'aaCord', 'customPin'].forEach(function ( el ) {
             var s = $scope.steps[el]
 
             if (!s.active) return
@@ -214,6 +211,24 @@ monitors.controller('MonitorsList', ['$scope', '$sce', function ($scope, $sce) {
 
     }
 
+    $scope.customPinCheckbox = function () {
+      if ($scope.steps.customPin.active) return
+      
+      var o = ['left', 'right']
+      o.forEach(function ( o ){
+          $scope.steps['pin'].active[o].id = $scope.steps['base'].active[o].id
+      })
+
+      $scope.steps['pin'].active.price = 0
+    }
+
+    $scope.aaCordCheckbox = function () {
+      if ($scope.steps.aaCord.active) return
+      
+      $scope.steps.cordLength.active = 'small'
+    }
+
+
     $scope.html = function(html) {
         return $sce.trustAsHtml(html)
     }
@@ -231,10 +246,8 @@ monitors.controller('MonitorsList', ['$scope', '$sce', function ($scope, $sce) {
 
 
     //test
-    $scope.confirmModel(6)
-    $scope.nextStep()
-    $scope.nextStep()
-    $scope.nextStep()
+    //$scope.confirmModel(6)
+    //$scope.nextStep()
 
 }])
 

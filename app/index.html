@@ -76,7 +76,8 @@
 
             <div class="b-step s2" ng-show="step > 1">
                 <div class="col1">
-                  <div class="switcher-wrap" ng-show="step < 7" ng-class="{hidden: step > 5}">
+                  <div class="switcher-wrap" ng-show="step < 7" ng-class="{hidden: step > 5 || ((step == 5) && steps.model.active.custom && !steps.customPin.active)}">
+                                
                         <div class="switcher">
                             <div ng-click="setSame(true)" ng-class="{active: same}">одинаковые</div>
                             <div ng-click="setSame(false)" ng-class="{active: !same}">разные</div>
@@ -110,7 +111,17 @@
                                 />
                             </div>
                             <div class="ear-layer {{c.name}}"
-                                ng-repeat="c in [steps.pin, steps.cord]"
+                                ng-show="!steps.model.active.custom || steps.customPin.active"
+                                ng-repeat="c in [steps.pin]"
+                            >
+                                <img class="first"
+                                    src="i/{{c.list[c.active[orient].id].url}}"
+                                    ng-show="maxStepComplete > 4"
+                                />
+                            </div>
+                            <div class="ear-layer {{c.name}}"
+                                ng-show="!steps.model.active.custom || steps.aaCord.active"
+                                ng-repeat="c in [steps.cord]"
                             >
                                 <img class="first"
                                     src="i/{{c.list[c.active[orient].id].url}}"
@@ -151,67 +162,75 @@
                             ng-include="'selector'">
                         </div>
 
-                        <div class="misc misc__custom" ng-show="(step == 5) && steps.model.active.custom">
-                            <div class="misc-row">
-                                <div class="misc-col1">
+                        <div ng-show="step == 5">
+                            <div class="misc misc__custom" ng-show="steps.model.active.custom">
+                                <div class="misc-row">
+                                    <div class="misc-col1">
 
-                                    <label>
-                                        <input type="checkbox" ng-model="steps.model.customPin.active">Замена разъемов либо установка новых
-                                    </label>
+                                        <label>
+                                          <input type="checkbox"
+                                            ng-model="steps.customPin.active"
+                                            ng-change="customPinCheckbox()"
+                                          >Замена разъемов либо установка новых
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
- 
-                        <div ng-repeat="sel in [steps.pin]"
-                            ng-show="(step == 5) && steps.model.customPin.active"
-                            ng-include="'selector'">
-                        </div>
+     
+                            <div ng-repeat="sel in [steps.pin]"
+                                ng-show="!steps.model.active.custom || steps.customPin.active"
+                                ng-include="'selector'">
+                            </div>
 
-                        <div class="misc misc__custom" ng-show="(step == 5) && steps.model.active.custom">
-                            <div class="misc-row">
-                                <div class="misc-col1">
+                            <div class="misc misc__custom" ng-show="steps.model.active.custom">
+                                <div class="misc-row">
+                                    <div class="misc-col1">
 
-                                    <label>
-                                        <input type="checkbox" ng-model="steps.model.aaCord.active">Витой кастомный провод Ambient Acoustics 
-                                    </label>
+                                        <label>
+                                          <input type="checkbox"
+                                            ng-model="steps.aaCord.active"
+                                            ng-change="aaCordCheckbox()"
+                                          >Витой кастомный провод Ambient Acoustics 
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div ng-show="(step == 5) && steps.model.aaCord.active">
-                            <div class="cord-table">
-                                <div class="cord-col1">
-                                    <div class="selector jack-selector">
-                                        <div class="selector-title">Тип джека</div>
-                                        <div class="selector-radio">
-                                            <label for="angle"><img src="i/7-1.png"></label> 
-                                            <input type="radio" ng-model="steps.jack.active" ng-value="steps.jack.angle" />
+                            <div ng-show="!steps.model.active.custom || steps.aaCord.active">
+                                <div class="cord-table">
+                                    <div class="cord-col1">
+                                        <div class="selector jack-selector">
+                                            <div class="selector-title">Тип джека</div>
+                                            <div class="selector-radio">
+                                                <label for="angle"><img src="i/7-1.png"></label> 
+                                                <input type="radio" ng-model="steps.jack.active" ng-value="steps.jack.angle" />
 
-                                            <label for="straight"><img src="i/7-2.png"></label>
-                                            <input type="radio" ng-model="steps.jack.active" ng-value="steps.jack.straight" />
+                                                <label for="straight"><img src="i/7-2.png"></label>
+                                                <input type="radio" ng-model="steps.jack.active" ng-value="steps.jack.straight" />
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="cord-col2">
-                                    <div ng-repeat="sel in [steps.cord]"
-                                        ng-include="'selector'">
+                                    <div class="cord-col2">
+                                        <div ng-repeat="sel in [steps.cord]"
+                                            ng-include="'selector'">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="cord-col3">
-                                    <div class="selector cord-selector">
-                                        <div class="selector-title">Длина провода</div>
-                                        <div class="selector-radio">
-                                            <div>
-                                                <input type="radio" ng-model="steps.cordLength.active" value="small" />
-                                                <label for="l100">100 см <img src="i/8-1.png"></label> 
-                                            </div>
-                                            <div>
-                                                <input type="radio" ng-model="steps.cordLength.active" value="medium" />
-                                                <label for="l130">130 см <img src="i/8-2.png"></label>
-                                            </div>
-                                            <div>
-                                                <input type="radio" ng-model="steps.cordLength.active" value="large" />
-                                                <label for="l160">160 см <img src="i/8-3.png"></label>
+                                    <div class="cord-col3">
+                                        <div class="selector cord-selector">
+                                            <div class="selector-title">Длина провода</div>
+                                            <div class="selector-radio">
+                                                <div>
+                                                    <input type="radio" ng-model="steps.cordLength.active" value="small" />
+                                                    <label for="l100">100 см <img src="i/8-1.png"></label> 
+                                                </div>
+                                                <div>
+                                                    <input type="radio" ng-model="steps.cordLength.active" value="medium" />
+                                                    <label for="l130">130 см <img src="i/8-2.png"></label>
+                                                </div>
+                                                <div>
+                                                    <input type="radio" ng-model="steps.cordLength.active" value="large" />
+                                                    <label for="l160">160 см <img src="i/8-3.png"></label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -381,8 +400,15 @@
                                 ng-include="'summary-row'"
                             ></div>
 
-                            <div class="details-row" ng-repeat="i in ['pin', 'cord']"
-                                ng-show="maxStepComplete > 4"
+                            <div class="details-row" ng-show="steps.model.active.custom && steps.customPin.active">
+                                <div class="value">
+                                    Замена разъемов либо установка новых
+                                </div>
+                                <div class="price">{{ steps.customPin.price }}$</div>
+                            </div>
+
+                            <div class="details-row" ng-repeat="i in ['pin']"
+                                ng-show="(maxStepComplete > 4) && (!steps.model.active.custom || steps.customPin.active)"
                                 ng-include="'summary-row'"
                             ></div>
 
@@ -392,15 +418,25 @@
                                 </div>
                                 <div class="price">{{ steps.aaCord.price }}$</div>
                             </div>
- 
-                            <div class="details-row" ng-show="maxStepComplete > 4">
+
+                            <div class="details-row" ng-repeat="i in ['cord']"
+                                ng-show="(maxStepComplete > 4) && (!steps.model.active.custom || steps.aaCord.active)"
+                                ng-include="'summary-row'"
+                            ></div>
+
+                             
+                            <div class="details-row"
+                                ng-show="(maxStepComplete > 4) && (!steps.model.active.custom || steps.aaCord.active)"
+                            >
                                 <div class="value">
                                     Тип джека
                                     <div class="hint">{{ steps.jack.active }}</div>
                                 </div>
                             </div>
 
-                            <div class="details-row" ng-show="maxStepComplete > 4">
+                            <div class="details-row"
+                              ng-show="(maxStepComplete > 4) && (!steps.model.active.custom || steps.aaCord.active)"
+                            >
                                 <div class="value">
                                     Длина провода
                                     <div class="hint">{{ steps.cordLength[steps.cordLength.active].name }}</div>
@@ -408,7 +444,8 @@
                                 <div ng-if="steps.cordLength[steps.cordLength.active].price" class="price">{{ steps.cordLength[steps.cordLength.active].price }}$</div>
                             </div>
 
-                            <div class="details-row" ng-show="steps.engraving.active && steps.engraving.text.length > 0">
+                            <div class="details-row"
+                              ng-show="steps.engraving.active && steps.engraving.text.length > 0">
                                 <div class="value">
                                     Гравировка кейса
                                     <div class="hint">{{ steps.engraving.text }}</div>
