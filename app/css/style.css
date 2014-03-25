@@ -758,6 +758,9 @@ body {
   margin: 0 auto;
   display: table;
 }
+.s2 .misc__custom .misc-col1 {
+  padding-bottom: 0;
+}
 .s2 .misc .misc-row {
   display: table-row;
 }
