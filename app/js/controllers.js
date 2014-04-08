@@ -274,10 +274,9 @@ monitors.controller('MonitorsList', ['$scope', '$sce', function ($scope, $sce) {
 
 
     //test
-    $scope.confirmModel(6)
-    $scope.nextStep()
-    $scope.nextStep()
-    $scope.nextStep()
+    //$scope.confirmModel(6)
+    //$scope.nextStep()
+    //$scope.nextStep()
 
 }])
 
