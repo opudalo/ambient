@@ -25,6 +25,12 @@ monitors.controller('MonitorsList', ['$scope', '$sce', function ($scope, $sce) {
             price: 5
           }
         },
+        cordSelector: {
+          active: 'AA',
+          AA: { price: 45},
+          change: { price: 15},
+          old: { price: 0}
+        },
         jack: {
           active: 'угловой',
           angle: "угловой",
@@ -102,6 +108,9 @@ monitors.controller('MonitorsList', ['$scope', '$sce', function ($scope, $sce) {
     $scope.setModel = function(id) {
         var m = _.extend({id: id}, $scope.steps.model.list[id])
         $scope.steps.model.active = m
+
+        $scope.steps.cordSelector.active = 'AA'
+        $scope.aaCordSelector()
     }
 
     $scope.confirmModel = function (id) {
@@ -142,13 +151,15 @@ monitors.controller('MonitorsList', ['$scope', '$sce', function ($scope, $sce) {
         function sumCustom () {
           var sum = 0
         
-          ;['fabricCase', 'drierCapsule', 'sulfurStick', 'namedCase', 'aaCord', 'customPin'].forEach(function ( el ) {
+          ;['fabricCase', 'drierCapsule', 'sulfurStick', 'namedCase'].forEach(function ( el ) {
             var s = $scope.steps[el]
 
             if (!s.active) return
 
             sum += s.price
           })
+
+          sum += $scope.steps.cordSelector[$scope.steps.cordSelector.active].price
 
           return sum
         }
@@ -211,6 +222,23 @@ monitors.controller('MonitorsList', ['$scope', '$sce', function ($scope, $sce) {
 
     }
 
+    $scope.aaCordSelector = function () {
+      var c = $scope.steps.cordSelector.active
+      if (c == 'AA') return
+
+      $scope.steps.cordLength.active = 'small'
+      
+      if (c == 'change') return
+
+
+      var o = ['left', 'right']
+      o.forEach(function ( o ){
+          $scope.steps['pin'].active[o].id = $scope.steps['base'].active[o].id
+      })
+
+      $scope.steps['pin'].active.price = 0
+    }
+
     $scope.customPinCheckbox = function () {
       if ($scope.steps.customPin.active) return
       
@@ -246,8 +274,10 @@ monitors.controller('MonitorsList', ['$scope', '$sce', function ($scope, $sce) {
 
 
     //test
-    //$scope.confirmModel(6)
-    //$scope.nextStep()
+    $scope.confirmModel(6)
+    $scope.nextStep()
+    $scope.nextStep()
+    $scope.nextStep()
 
 }])
 
@@ -568,35 +598,27 @@ var CUSTOMS = {
             name: 'без рисунков'
         }, {
             url: '9-1.png',
-            name: 'белый лого',
+            name: 'золотой лого',
             price: 0
         }, {
             url: '9-2.png',
-            name: 'белый лого',
+            name: 'серебренный лого',
             price: 0
         }, {
             url: '9-3.png',
-            name: 'белый лого',
+            name: 'золотой лого',
             price: 0
         }, {
             url: '9-4.png',
-            name: 'белый лого',
+            name: 'серебренный лого',
             price: 0
         }, {
             url: '9-5.png',
-            name: 'черный лого',
+            name: 'золотой лого',
             price: 0
         }, {
             url: '9-6.png',
-            name: 'черный лого',
-            price: 0
-        }, {
-            url: '9-7.png',
-            name: 'черный лого',
-            price: 0
-        }, {
-            url: '9-8.png',
-            name: 'черный лого',
+            name: 'серебренный лого',
             price: 0
         }]
     }, 

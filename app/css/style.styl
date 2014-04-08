@@ -106,6 +106,8 @@ body
 
     &.btn-back
       width 40%
+      &.one
+        width: 100%
       &::before
         content: url('../img/larr.png')
         top: 2px
@@ -453,17 +455,16 @@ body
             left: -79px
 
         &.left .graphics img
-            top: 110px
-            left: 10px
+            top: 60px
             transform: rotate(-40deg)
 
         &.right .graphics
             transform: scaleX(-1)
             img
-                top: 110px
-                left: initial
-                right: 10px
-                transform: rotate(40deg)
+              top: 60px
+              right: 0
+              left: initial
+              transform: rotate(40deg)
 
         img
             //transition: opacity .3s linear
