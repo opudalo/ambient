@@ -27,8 +27,8 @@ monitors.controller('MonitorsList', ['$scope', '$sce', function ($scope, $sce) {
         },
         cordSelector: {
           active: 'AA',
-          AA: { price: 45},
-          change: { price: 15},
+          AA: { price: 60},
+          change: { price: 30},
           old: { price: 0}
         },
         jack: {
