@@ -81,6 +81,8 @@ body {
   font-size: 15px;
   font-weight: bold;
   text-shadow: 0 1px 0 rgba(252,255,164,0.45);
+  outline: none;
+  border: none;
 }
 .b-btn.btn-continue,
 .b-btn.btn-back {
