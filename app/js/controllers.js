@@ -1,6 +1,6 @@
 'use strict'
 
-var POST_URL = '/create',
+var POST_URL = '/apply.php',
   DEFAULTS =  {
     model: {
       active: { id: null },
@@ -72,13 +72,13 @@ var POST_URL = '/create',
   }
 var monitors = angular.module('monitorsConstructor', [])
 
-monitors.controller('MonitorsList', ['$scope', '$sce', function ($scope, $sce) {
+monitors.controller('MonitorsList', ['$scope', '$sce', '$http', function ($scope, $sce, $http) {
 
     new Tooltip()
 
     $scope.steps = DEFAULTS
-      
-    
+
+
 
     ;['base', 'cover', 'chanel', 'cap', 'graphics', 'pin', 'cord'].forEach(function(el) {
          $scope.steps[el] = _.extend({
@@ -94,7 +94,7 @@ monitors.controller('MonitorsList', ['$scope', '$sce', function ($scope, $sce) {
     $scope.step = 1
     $scope.maxStepComplete = 0
     $scope.same = true
-  
+
     $scope.setSame = function(val) {
         $scope.same = val
     }
@@ -113,17 +113,17 @@ monitors.controller('MonitorsList', ['$scope', '$sce', function ($scope, $sce) {
     }
 
     $scope.prevStep = function () {
-        $scope.step-- 
+        $scope.step--
     }
 
     $scope.nextStep = function () {
-        $scope.step++ 
+        $scope.step++
         $scope.maxStepComplete = Math.max($scope.maxStepComplete, $scope.step)
     }
 
     $scope.totalPrice = function () {
         var price = parseInt($scope.steps.model.active.price)
-        
+
         ;['base', 'cover', 'chanel', 'cap', 'graphics', 'pin', 'cord'].forEach(function(el) {
             var p = $scope.steps[el].active.price
             if (typeof p != 'undefined') price += parseInt(p)
@@ -144,7 +144,7 @@ monitors.controller('MonitorsList', ['$scope', '$sce', function ($scope, $sce) {
 
         function sumCustom () {
           var sum = 0
-        
+
           ;['fabricCase', 'drierCapsule', 'sulfurStick', 'namedCase'].forEach(function ( el ) {
             var s = $scope.steps[el]
 
@@ -162,10 +162,10 @@ monitors.controller('MonitorsList', ['$scope', '$sce', function ($scope, $sce) {
     $scope.select = function (orient, name, id) {
         var o = ($scope.same || name == 'cord') ? ['left', 'right'] : [orient],
           selector = $scope.steps[name]
-            
+
         o.forEach(function ( o ){
             selector.active[o].id = id
-         
+
 
             if (name == 'base' && $scope.maxStepComplete == 2) {
               var pin = $scope.steps['pin']
@@ -180,7 +180,7 @@ monitors.controller('MonitorsList', ['$scope', '$sce', function ($scope, $sce) {
         function capPrice(id) {
           if (id != 0) return $scope.steps['cap'].active.price = 20
           var active = $scope.steps['cap'].active
-          if (active.left.id == active.right.id) $scope.steps['cap'].active.price = 0 
+          if (active.left.id == active.right.id) $scope.steps['cap'].active.price = 0
         }
 
         function pinPrice(id) {
@@ -189,7 +189,7 @@ monitors.controller('MonitorsList', ['$scope', '$sce', function ($scope, $sce) {
             compareTo: 'base',
             price: 20
           })
-        }  
+        }
 
         function chanelPrice(id) {
           checkSimilar({
@@ -203,7 +203,7 @@ monitors.controller('MonitorsList', ['$scope', '$sce', function ($scope, $sce) {
           var setTo = cfg.setTo,
             compareTo = cfg.compareTo,
             price = cfg.price
-              
+
           var c = $scope.steps[compareTo].active,
             s = $scope.steps[setTo].active
 
@@ -223,7 +223,7 @@ monitors.controller('MonitorsList', ['$scope', '$sce', function ($scope, $sce) {
       if (c == 'AA') return
 
       $scope.steps.cordLength.active = 'small'
-      
+
       if (c == 'change') return
 
 
@@ -253,20 +253,20 @@ monitors.controller('MonitorsList', ['$scope', '$sce', function ($scope, $sce) {
 
     function getData() {
       var steps = $scope.steps,
-        data = _.clone(steps)
-      
+        data = _.cloneDeep(steps)
+
 
       ;['base', 'cover', 'chanel', 'cap', 'graphics', 'pin', 'cord'].forEach(function(i) {
-        
+
         var sel = data[i]
 
         ;['left', 'right'].forEach(function(orient) {
           var active = sel.active,
             listItem = sel.list[active[orient].id]
-          
+
           active[orient] = _.extend(listItem, active[orient])
         })
-      
+
         delete sel.list
       })
 
@@ -276,30 +276,25 @@ monitors.controller('MonitorsList', ['$scope', '$sce', function ($scope, $sce) {
     }
 
 
-    $scope.submit = function () { 
+    $scope.submit = function () {
 
       var data = getData()
+     
       $http({
           method  : 'POST',
           url     : POST_URL,
           data    : $.param(data),  // pass in data as strings
           headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
+      }).success(function(data) {
+          console.log(data)
       })
-          .success(function(data) {
-              console.log(data)
-
-              if (!data.success) {
-                  $scope.errorName = data.errors.name
-                  $scope.errorSuperhero = data.errors.superheroAlias
-              } else {
-                  $scope.message = data.message
-              }
-          })
     }
 
     //test
-    $scope.confirmModel(6)
-    $scope.nextStep()
-    $scope.nextStep()
+   // $scope.confirmModel(6)
+   // $scope.nextStep()
+   // $scope.nextStep()
+   // $scope.nextStep()
+   // $scope.nextStep()
 
 }])
