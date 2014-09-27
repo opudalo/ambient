@@ -490,11 +490,6 @@ body {
 }
 .s2 .ear.left .graphics img {
   top: 60px;
-  -webkit-transform: rotate(-40deg);
-  -moz-transform: rotate(-40deg);
-  -o-transform: rotate(-40deg);
-  -ms-transform: rotate(-40deg);
-  transform: rotate(-40deg);
 }
 .s2 .ear.right .graphics {
   -webkit-transform: scaleX(-1);
@@ -507,11 +502,6 @@ body {
   top: 60px;
   right: 0;
   left: initial;
-  -webkit-transform: rotate(40deg);
-  -moz-transform: rotate(40deg);
-  -o-transform: rotate(40deg);
-  -ms-transform: rotate(40deg);
-  transform: rotate(40deg);
 }
 .s2 .ear img {
   opacity: 0;

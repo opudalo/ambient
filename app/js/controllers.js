@@ -39,7 +39,10 @@ var POST_URL = '/apply.php',
       active: false,
       price: 20
     },
-    filterSulfur: false,
+    filterSulfur: {
+      active: false,
+      price: 10
+    },
     fabricCase: {
       active: false,
       price: 2.5
@@ -116,6 +119,13 @@ monitors.controller('MonitorsList', ['$scope', '$sce', '$http', function ($scope
         $scope.step--
     }
 
+    $scope.setStep = function (index) {
+        if ($scope.maxStepComplete == 0) return 
+        $scope.step = index
+
+        $scope.maxStepComplete = Math.max($scope.maxStepComplete, $scope.step)
+    }
+
     $scope.nextStep = function () {
         $scope.step++
         $scope.maxStepComplete = Math.max($scope.maxStepComplete, $scope.step)
@@ -137,6 +147,8 @@ monitors.controller('MonitorsList', ['$scope', '$sce', '$http', function ($scope
         var c = $scope.steps.cordLength
         price += c[c.active].price || 0
 
+        var s = $scope.steps.filterSulfur
+        if (s.active) price += s.price
 
         if ($scope.steps.model.active.custom) price += sumCustom()
 

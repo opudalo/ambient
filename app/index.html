@@ -24,7 +24,9 @@
   <ol class="b-nav">
     <li class="b-nav-item"
     ng-repeat="m in ['Модель','Цвет','Вставки','Рисунки','Провода','Другое','Доставка']"
-    ng-class="{active : $index == step - 1}">{{m}}</li>
+    ng-class="{active : $index == step - 1}"
+    ng-click="setStep($index + 1)"
+    >{{m}}</li>
   </ol>
 </div>
 <div class="b-construct" data-current="s1">
@@ -265,7 +267,7 @@
             </div>
             <div class="misc-col3">
               <label>
-                <input type="checkbox" ng-model="steps.filterSulfur">Установка серных фильтров
+                <input type="checkbox" ng-model="steps.filterSulfur.active">Установка серных фильтров
               </label>
               <div class="misc-desc">
                 Используют чтобы сера и влага не попадала внутрь мониторов.
@@ -325,6 +327,10 @@
             <label>
               Отчество
               <input type="text" ng-model="steps.customer.secondName"/>
+            </label>
+            <label>
+              Артист/Группа
+              <input type="text" ng-model="steps.customer.artist"/>
             </label>
             <label data-hint1="Улица, дом, квартира">
               Адрес
@@ -469,10 +475,11 @@
             <div class="price">{{ steps.ventilation.price }}$</div>
           </div>
 
-          <div class="details-row" ng-show="steps.filterSulfur">
+          <div class="details-row" ng-show="steps.filterSulfur.active">
             <div class="value">
               Установка серных фильтров
             </div>
+            <div class="price">{{ steps.filterSulfur.price }}$</div>
           </div>
 
           <div class="details-row" ng-show="steps.model.active.custom && steps.namedCase.active">
