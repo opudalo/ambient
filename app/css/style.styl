@@ -418,6 +418,13 @@ body
                 text-align right
                 width: 65px
             
+    .pic-controls
+        z-index: 11111111;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 59px;
+        
     .ears
         width: 670px
         margin: 0 auto
@@ -432,6 +439,25 @@ body
             bottom: 17px
             margin: 0 auto
             left: 19px
+
+        .cnv
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 999999;
+        .canva-cont
+            position: absolute;
+            z-index: 999;
+            width: 360px;
+            height: 300px;
+            left: -115px;
+            top: -30px;
+        .upper-canvas
+            display: block !important;
+            z-index: 1999999;
+
     .ear
         display: inline-block
         position: relative
@@ -453,15 +479,8 @@ body
             top: -86px
             left: -79px
 
-        &.left .graphics img
-            top: 60px
-
-        &.right .graphics
+        &.right .canva-cont
             transform: scaleX(-1)
-            img
-              top: 60px
-              right: 0
-              left: initial
 
         img
             //transition: opacity .3s linear
@@ -487,6 +506,7 @@ body
         float: left
 
     .switcher-wrap
+        position: relative
         text-align center
         user-select: none
         &.hidden

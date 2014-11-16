@@ -3,6 +3,9 @@
   "version":"0.0.1",
   "description": "A starter project for AngularJS",
   "repository": "https://github.com/angular/angular-seed",
+  "scripts": {
+    "start": "nodemon ./scripts/web-server.js"
+  },
   "devDependencies": {
     "phantomjs": "~1.9",
     "karma": "~0.10.4",

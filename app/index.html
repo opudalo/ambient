@@ -11,9 +11,11 @@
 <script src="lib/lodash.min.js"></script>
 <script src="lib/jquery/jquery-1.10.2.min.js"></script>
 <script src="lib/tooltip.js"></script>
+<script src="lib/fabric.js"></script>
 
 <script src="js/models.js"></script>
 <script src="js/customs.js"></script>
+<script src="js/defaults.js"></script>
 <script src="js/controllers.js"></script>
 <link href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700&amp;subset=latin,cyrillic" rel="stylesheet" type="text/css">
 </head>
@@ -83,10 +85,13 @@
           <div ng-click="setSame(true)" ng-class="{active: same}">одинаковые</div>
           <div ng-click="setSame(false)" ng-class="{active: !same}">разные</div>
         </div>
+        <div class="pic-controls" ng-show="step == 4">
+            <button ng-show="showRotatePic" ng-click="rotatePics()">Вращать</button>
+            <button ng-show="showConfirmPic" ng-click="savePic()">Подтвердить</button>
+        </div>
       </div>
       <div class="ears" ng-show="step < 7">
         <div class="ear {{orient}}" ng-repeat="orient in ['left', 'right']">
-
           <div class="ear-layer {{c.name}}"
             ng-repeat="c in [steps.base, steps.cover, steps.chanel]"
             >
@@ -103,13 +108,9 @@
             ng-show="maxStepComplete > 2"
             />
           </div>
-          <div class="ear-layer {{c.name}}"
-            ng-repeat="c in [steps.graphics]"
-            >
-            <img class="first"
-            ng-src="i/{{c.list[c.active[orient].id].url}}"
-            ng-show="maxStepComplete > 3"
-            />
+
+          <div ng-show="maxStepComplete > 3" class="canva-cont">
+              <canvas id="canvas{{orient}}" width="360" height="300" class="cnv"></canvas>
           </div>
           <div class="ear-layer {{c.name}}"
             ng-show="steps.cordSelector.active != 'old'"
@@ -133,18 +134,33 @@
       </div>
 
       <script type="text/ng-template" id="selector">
-<div class="selector" ng-class="{same: same}" data-type="{{sel.name}}"> 
-                            <div class="selector-title">{{sel.title}}</div>
-                            <div class="selector-items {{orient}}" ng-repeat="orient in ['left', 'right']">
-                                <div class="selector-item"
-                                    ng-repeat="i in sel.list"
-                                    ng-class="{active: sel.active[orient].id == $index}"
-                                    ng-click="select(orient, sel.name, $index)"
-                                    data-tooltip="{{i.name}}"
-                                    data-tooltip-position="top"
-                                    style="background-image: url({{'i/' + i.url}})"></div>
-                            </div>
-                        </div>
+        <div class="selector" ng-class="{same: same}" data-type="{{sel.name}}"> 
+            <div class="selector-title">{{sel.title}}</div>
+            <div class="selector-items {{orient}}" ng-repeat="orient in ['left', 'right']">
+                <div class="selector-item"
+                    ng-repeat="i in sel.list"
+                    ng-class="{active: sel.active[orient].id == $index}"
+                    ng-click="select(orient, sel.name, $index)"
+                    data-tooltip="{{i.name}}"
+                    data-tooltip-position="top"
+                    style="background-image: url({{'i/' + i.url}})"></div>
+            </div>
+        </div>
+      </script>
+
+      <script type="text/ng-template" id="graphics">
+        <div class="selector" ng-class="{same: same}" data-type="{{sel.name}}"> 
+            <div class="selector-title">{{sel.title}}</div>
+            <div class="selector-items {{orient}}" ng-repeat="orient in ['left', 'right']">
+                <div class="selector-item"
+                    ng-repeat="i in sel.list"
+                    ng-class="{active: sel.active[orient].id == $index}"
+                    ng-click="graphics(orient, sel.name, $index)"
+                    data-tooltip="{{i.name}}"
+                    data-tooltip-position="top"
+                    style="background-image: url({{'i/' + i.url}})"></div>
+            </div>
+        </div>
       </script>
 
       <div class="controls" ng-show="step < 7">
@@ -160,7 +176,10 @@
 
         <div ng-repeat="sel in [steps.graphics]"
           ng-show="step == 4"
-          ng-include="'selector'">
+          ng-include="'graphics'">
+        </div>
+
+        <div ng-show="step == 4">
         </div>
 
         <div ng-show="step == 5">

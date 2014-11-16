@@ -1,87 +1,12 @@
 'use strict'
 
 var POST_URL = '/apply.php',
-  DEFAULTS =  {
-    model: {
-      active: { id: null },
-      list: MODELS
-    },
-    cordLength: {
-      active: 'small',
-      small: {
-        name: '100см'
-      },
-      medium: {
-        name: '130см'
-      },
-      large: {
-        name: '160см',
-        price: 5
-      }
-    },
-    cordSelector: {
-      active: 'AA',
-      AA: { price: 60},
-      change: { price: 30},
-      old: { price: 0}
-    },
-    jack: {
-      active: 'угловой',
-      angle: "угловой",
-      straight: "прямой"
-    },
-    engraving: {
-      active: false,
-      price: 10,
-      text: ''
-    },
-    ventilation: {
-      active: false,
-      price: 20
-    },
-    filterSulfur: {
-      active: false,
-      price: 10
-    },
-    fabricCase: {
-      active: false,
-      price: 2.5
-    },
-    drierCapsule: {
-      active: false,
-      price: 2.5
-    },
-    sulfurStick: {
-      active: false,
-      price: 3
-    },
-    namedCase: {
-      active: false,
-      price: 30
-    },
-    customer: {
-      userName: '',
-      email: '',
-      surname: '',
-      name: '',
-      secondName: '',
-      address: '',
-      city: '',
-      country: '',
-      zip: '',
-      phone: '',
-      misc: ''
-    }
-  }
-var monitors = angular.module('monitorsConstructor', [])
+  monitors = angular.module('monitorsConstructor', [])
 
 monitors.controller('MonitorsList', ['$scope', '$sce', '$http', function ($scope, $sce, $http) {
-
-    new Tooltip()
+ //   new Tooltip()
 
     $scope.steps = DEFAULTS
-
-
 
     ;['base', 'cover', 'chanel', 'cap', 'graphics', 'pin', 'cord'].forEach(function(el) {
          $scope.steps[el] = _.extend({
@@ -127,6 +52,7 @@ monitors.controller('MonitorsList', ['$scope', '$sce', '$http', function ($scope
     }
 
     $scope.nextStep = function () {
+        if ($scope.step == 4) $scope.savePic() 
         $scope.step++
         $scope.maxStepComplete = Math.max($scope.maxStepComplete, $scope.step)
     }
@@ -230,6 +156,96 @@ monitors.controller('MonitorsList', ['$scope', '$sce', '$http', function ($scope
 
     }
 
+    setTimeout(function() {
+      var cLeft = window['canvasleft'] = new fabric.Canvas('canvasleft');
+      var cRight = window['canvasright'] = new fabric.Canvas('canvasright');
+      cLeft.on ("object:moving", onMove)
+      cRight.on ("object:moving", onMove)
+    }, 500)
+    
+    function onMove(event) {
+      $scope.showRotatePic = false
+      $scope.showConfirmPic = true
+      var el = this.relatedTarget
+      el.setCoords()
+      var pad = 10,
+        bound = el.getBoundingRect(),
+        rightLimit = this.width - el.getBoundingRectWidth() - pad,
+        bottomLimit = this.height - el.getBoundingRectHeight() - pad
+
+      var left = el.left
+      if (bound.left < pad) left = el.left - bound.left + pad
+      if (bound.left > rightLimit) left = rightLimit - el.left + bound.left
+
+      var top = el.top
+      if (bound.top < pad) top = el.top - bound.top + pad
+      if (bound.top > bottomLimit) top = bottomLimit - el.top + bound.top
+
+      el.setLeft(left)
+      el.setTop(top)
+    }
+    $scope.graphics = function (orient, name, id) {
+        var o = $scope.same ? ['left', 'right'] : [orient],
+          selector = $scope.steps[name]
+
+        o.forEach(draw)
+
+        function draw( o ){
+          selector.active[o].id = id
+
+          if (id != 0) {
+            $scope.showRotatePic = true
+            $scope.showConfirmPic = false
+          }
+
+          var url = 'i/' + selector.list[id].url
+          var canvas = window['canvas' + o]
+          canvas.clear().renderAll()
+
+          fabric.Image.fromURL(url, function(img){
+            var max = Math.max(img.width, img.height),
+              scale = 1,
+              left,
+              top
+            
+            if (max > 150) scale = 150 / max
+              
+            left = canvas.width / 2 - scale * img.width / 2
+            top = canvas.height / 2 - scale * img.height / 2
+            img.scale(scale).set({ left: left, top: top})
+
+            canvas.add(img) 
+            //.setActiveObject(img);
+          })
+        }
+    }
+
+    $scope.showConfirmPic = false
+    $scope.showRotatePic = false
+
+    $scope.rotatePics = function () {
+      $scope.showRotatePic = false
+      $scope.showConfirmPic = true
+
+      ;['left', 'right'].forEach(function(o) {
+        var canvas = window['canvas' + o]
+        canvas.forEachObject(function (o) {
+          canvas.setActiveObject(o)
+        })
+      })
+    }
+
+    $scope.savePic = function () {
+      $scope.showRotatePic = true
+      $scope.showConfirmPic = false
+
+      ;['left', 'right'].forEach(function(o) {
+        var canvas = window['canvas' + o]
+        canvas.deactivateAll().renderAll()
+      })
+      //var pic = window._canvas.toDataURL()
+    } 
+
     $scope.aaCordSelector = function () {
       var c = $scope.steps.cordSelector.active
       if (c == 'AA') return
@@ -303,9 +319,9 @@ monitors.controller('MonitorsList', ['$scope', '$sce', '$http', function ($scope
     }
 
     //test
-   // $scope.confirmModel(6)
-   // $scope.nextStep()
-   // $scope.nextStep()
+   $scope.confirmModel(4)
+   $scope.nextStep()
+   $scope.nextStep()
    // $scope.nextStep()
    // $scope.nextStep()
 
