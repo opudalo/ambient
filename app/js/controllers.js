@@ -3,6 +3,38 @@
 var POST_URL = '/apply.php',
   monitors = angular.module('monitorsConstructor', [])
 
+monitors.directive('fileInput', [ '$parse', '$http', function($parse, $http) {
+  return {
+    restrict: 'A',
+    link: function(scope, els, attr, ctrl) {
+      els.bind('change', function () {
+        var el = els[0],
+          files = el.files
+
+        if (!files || !files.length) return
+
+        $parse(attr.fileInput)
+          .assign(scope, files[0])
+        
+        var data = new FormData()
+        data.append('file', files[0])
+
+        scope.$apply()
+        $http.post('/addGraphics', data, {
+          transformRequest: angular.identity,
+          headers: { 'Content-Type': undefined }
+        }).success(function (msg) {
+          console.log(msg)
+          //scope.caps[msg.cap.id] = msg.cap
+        })
+      })
+    }
+  }
+}])
+
+
+
+
 monitors.controller('MonitorsList', ['$scope', '$sce', '$http', function ($scope, $sce, $http) {
  //   new Tooltip()
 
