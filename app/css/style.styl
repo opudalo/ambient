@@ -112,6 +112,29 @@ body
         top: 2px
         position: relative
 
+.selector[data-type="graphics"] .selector-title
+    margin-bottom 10px
+    
+.add-own
+    color: #ffa901;
+    background-color: #191919;
+    box-shadow: 0 3px 1px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+    display: inline-block;
+    position: relative;
+    border-radius: 2px;
+    background: linear-gradient(bottom, rgba(0, 0, 0, 0.23) 7%, rgba(255,255,255,0.13) 100%);
+    text-align: center;
+    overflow: hidden;
+    padding: 0 18px 0 13px;
+    line-height: 25px;
+    margin-bottom: -9px;
+    margin-left: 10px;
+    input
+        position absolute
+        left 0
+        top 0
+        opacity 0
+        height 48px
 
 .s1
     .model
@@ -454,9 +477,12 @@ body
             height: 300px;
             left: -115px;
             top: -30px;
-        .upper-canvas
-            display: block !important;
-            z-index: 1999999;
+            
+            .upper-canvas
+                display: none !important;
+            &.active .upper-canvas
+                display: block !important;
+                z-index: 1999999;
 
     .ear
         display: inline-block

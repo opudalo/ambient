@@ -13,19 +13,26 @@ monitors.directive('fileInput', [ '$parse', '$http', function($parse, $http) {
 
         if (!files || !files.length) return
 
-        $parse(attr.fileInput)
-          .assign(scope, files[0])
         
         var data = new FormData()
         data.append('file', files[0])
 
-        scope.$apply()
-        $http.post('/addGraphics', data, {
+        //$parse(attr.fileInput)
+        //  .assign(scope, files[0])
+        //scope.$apply()
+        $http.post('upload.php', data, {
           transformRequest: angular.identity,
           headers: { 'Content-Type': undefined }
         }).success(function (msg) {
-          console.log(msg)
-          //scope.caps[msg.cap.id] = msg.cap
+          if (!msg.url) return
+
+          var url = msg.url.replace(document.location.origin, '').replace(/^.*?upload/, 'upload' )
+
+          scope.steps.graphics.list.push({
+            name: 'Свой рисунок',
+            url: url,
+            price: 0
+          })
         })
       })
     }
@@ -78,6 +85,8 @@ monitors.controller('MonitorsList', ['$scope', '$sce', '$http', function ($scope
 
     $scope.setStep = function (index) {
         if ($scope.maxStepComplete == 0) return 
+
+        if (index == 4) setFabric()
         $scope.step = index
 
         $scope.maxStepComplete = Math.max($scope.maxStepComplete, $scope.step)
@@ -188,14 +197,7 @@ monitors.controller('MonitorsList', ['$scope', '$sce', '$http', function ($scope
 
     }
 
-    setTimeout(function() {
-      var cLeft = window['canvasleft'] = new fabric.Canvas('canvasleft');
-      var cRight = window['canvasright'] = new fabric.Canvas('canvasright');
-      cLeft.on ("object:moving", onMove)
-      cRight.on ("object:moving", onMove)
-    }, 500)
-    
-    function onMove(event) {
+    function onMove() {
       $scope.showRotatePic = false
       $scope.showConfirmPic = true
       var el = this.relatedTarget
@@ -218,8 +220,18 @@ monitors.controller('MonitorsList', ['$scope', '$sce', '$http', function ($scope
     }
     $scope.graphics = function (orient, name, id) {
         var o = $scope.same ? ['left', 'right'] : [orient],
-          selector = $scope.steps[name]
-
+          selector = $scope.steps[name],
+          cLeft, cRight
+        
+        window['cleft'] = window['cleft'] || new fabric.Canvas('canvasleft');
+        window['cright'] = window['cright'] || new fabric.Canvas('canvasright');
+        
+        cLeft = window['cleft'] 
+        cRight = window['cright']
+        
+        cLeft.on ("object:moving", onMove)
+        cRight.on ("object:moving", onMove)
+    
         o.forEach(draw)
 
         function draw( o ){
@@ -230,8 +242,8 @@ monitors.controller('MonitorsList', ['$scope', '$sce', '$http', function ($scope
             $scope.showConfirmPic = false
           }
 
-          var url = 'i/' + selector.list[id].url
-          var canvas = window['canvas' + o]
+          var url = selector.list[id].url
+          var canvas = window['c' + o]
           canvas.clear().renderAll()
 
           fabric.Image.fromURL(url, function(img){
@@ -260,7 +272,7 @@ monitors.controller('MonitorsList', ['$scope', '$sce', '$http', function ($scope
       $scope.showConfirmPic = true
 
       ;['left', 'right'].forEach(function(o) {
-        var canvas = window['canvas' + o]
+        var canvas = window['c' + o]
         canvas.forEachObject(function (o) {
           canvas.setActiveObject(o)
         })
@@ -272,7 +284,7 @@ monitors.controller('MonitorsList', ['$scope', '$sce', '$http', function ($scope
       $scope.showConfirmPic = false
 
       ;['left', 'right'].forEach(function(o) {
-        var canvas = window['canvas' + o]
+        var canvas = window['c' + o]
         canvas.deactivateAll().renderAll()
       })
       //var pic = window._canvas.toDataURL()
@@ -331,6 +343,19 @@ monitors.controller('MonitorsList', ['$scope', '$sce', '$http', function ($scope
       })
 
       delete data.model.list
+      
+      data.graphicsPosition = {
+        left: '',
+        right: ''
+      }
+      
+      ;['left', 'right'].forEach(function(orient) {
+          var active = window['c' + orient],
+            base64 = active.toDataURL()
+
+          data.graphicsPosition[orient] = base64
+      })
+
 
       return data
     }
@@ -351,9 +376,9 @@ monitors.controller('MonitorsList', ['$scope', '$sce', '$http', function ($scope
     }
 
     //test
-   $scope.confirmModel(4)
-   $scope.nextStep()
-   $scope.nextStep()
+   //$scope.confirmModel(4)
+   //$scope.nextStep()
+   //$scope.nextStep()
    // $scope.nextStep()
    // $scope.nextStep()
 

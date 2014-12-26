@@ -109,6 +109,39 @@ body {
   top: 2px;
   position: relative;
 }
+.selector[data-type="graphics"] .selector-title {
+  margin-bottom: 10px;
+}
+.add-own {
+  color: #ffa901;
+  background-color: #191919;
+  -webkit-box-shadow: 0 3px 1px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+  box-shadow: 0 3px 1px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+  display: inline-block;
+  position: relative;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  background: -webkit-linear-gradient(bottom, rgba(0,0,0,0.23) 7%, rgba(255,255,255,0.13) 100%);
+  background: -moz-linear-gradient(bottom, rgba(0,0,0,0.23) 7%, rgba(255,255,255,0.13) 100%);
+  background: -o-linear-gradient(bottom, rgba(0,0,0,0.23) 7%, rgba(255,255,255,0.13) 100%);
+  background: -ms-linear-gradient(bottom, rgba(0,0,0,0.23) 7%, rgba(255,255,255,0.13) 100%);
+  background: linear-gradient(bottom, rgba(0,0,0,0.23) 7%, rgba(255,255,255,0.13) 100%);
+  text-align: center;
+  overflow: hidden;
+  padding: 0 18px 0 13px;
+  line-height: 25px;
+  margin-bottom: -9px;
+  margin-left: 10px;
+}
+.add-own input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  height: 48px;
+}
 .s1 .model {
   display: none;
 }
@@ -495,7 +528,10 @@ body {
   left: -115px;
   top: -30px;
 }
-.s2 .ears .upper-canvas {
+.s2 .ears .canva-cont .upper-canvas {
+  display: none !important;
+}
+.s2 .ears .canva-cont.active .upper-canvas {
   display: block !important;
   z-index: 1999999;
 }

@@ -1,25 +1,3 @@
-<!doctype html>
-<html lang="en" ng-app="monitorsConstructor">
-<head>
-<meta charset="utf-8">
-<title>Создай свой кастом</title>
-<link href="css/reset.css" rel="stylesheet" />
-<link href="css/tooltip.css" rel="stylesheet" />
-<link href="css/style.css" rel="stylesheet" />
-
-<script src="lib/angular/angular.js"></script>
-<script src="lib/lodash.min.js"></script>
-<script src="lib/jquery/jquery-1.10.2.min.js"></script>
-<script src="lib/tooltip.js"></script>
-<script src="lib/fabric.js"></script>
-
-<script src="js/models.rus.js"></script>
-<script src="js/customs.rus.js"></script>
-<script src="js/defaults.js"></script>
-<script src="js/controllers.js"></script>
-<link href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700&amp;subset=latin,cyrillic" rel="stylesheet" type="text/css">
-</head>
-<body ng-controller="MonitorsList">
 <div class="b-head">
 
   <div class="b-logo"><a href="/"><img src="img/logo.png" alt="Ambient Acoustics" /></a></div>
@@ -85,13 +63,10 @@
           <div ng-click="setSame(true)" ng-class="{active: same}">одинаковые</div>
           <div ng-click="setSame(false)" ng-class="{active: !same}">разные</div>
         </div>
-        <div class="pic-controls" ng-show="step == 4">
-            <button ng-show="showRotatePic" ng-click="rotatePics()">Вращать</button>
-            <button ng-show="showConfirmPic" ng-click="savePic()">Подтвердить</button>
-        </div>
       </div>
       <div class="ears" ng-show="step < 7">
         <div class="ear {{orient}}" ng-repeat="orient in ['left', 'right']">
+
           <div class="ear-layer {{c.name}}"
             ng-repeat="c in [steps.base, steps.cover, steps.chanel]"
             >
@@ -108,11 +83,9 @@
             ng-show="maxStepComplete > 2"
             />
           </div>
-
           <div ng-show="maxStepComplete > 3"
             class="canva-cont"
             ng-class="{active: step == 4}"
-            
             >
               <canvas id="canvas{{orient}}" width="360" height="300" class="cnv"></canvas>
           </div>
@@ -138,18 +111,18 @@
       </div>
 
       <script type="text/ng-template" id="selector">
-        <div class="selector" ng-class="{same: same}" data-type="{{sel.name}}"> 
-            <div class="selector-title">{{sel.title}}</div>
-            <div class="selector-items {{orient}}" ng-repeat="orient in ['left', 'right']">
-                <div class="selector-item"
-                    ng-repeat="i in sel.list"
-                    ng-class="{active: sel.active[orient].id == $index}"
-                    ng-click="select(orient, sel.name, $index)"
-                    data-tooltip="{{i.name}}"
-                    data-tooltip-position="top"
-                    style="background-image: url({{'i/' + i.url}})"></div>
-            </div>
-       </div>
+          <div class="selector" ng-class="{same: same}" data-type="{{sel.name}}"> 
+              <div class="selector-title">{{sel.title}}</div>
+              <div class="selector-items {{orient}}" ng-repeat="orient in ['left', 'right']">
+                  <div class="selector-item"
+                      ng-repeat="i in sel.list"
+                      ng-class="{active: sel.active[orient].id == $index}"
+                      ng-click="select(orient, sel.name, $index)"
+                      data-tooltip="{{i.name}}"
+                      data-tooltip-position="top"
+                      style="background-image: url({{'i/' + i.url}})"></div>
+              </div>
+          </div>
       </script>
 
       <script type="text/ng-template" id="graphics">
@@ -189,7 +162,6 @@
           ng-show="step == 4"
           ng-include="'graphics'">
         </div>
-
 
         <div ng-show="step == 5">
           <div class="misc misc__custom" ng-show="steps.model.active.custom">
@@ -331,7 +303,7 @@
 
 
       <div class="shipping" ng-show="step == 7">
-        <div class="header">Адресс доставки</div>
+        <div class="header">Адрес доставки</div>
 
         <form ng-submit="submit()">
           <div class="shipping-form">
@@ -542,5 +514,3 @@
     </div>
   </div>
 </div>
-</body>
-</html>

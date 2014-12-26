@@ -1,31 +1,9 @@
-<!doctype html>
-<html lang="en" ng-app="monitorsConstructor">
-<head>
-<meta charset="utf-8">
-<title>Создай свой кастом</title>
-<link href="css/reset.css" rel="stylesheet" />
-<link href="css/tooltip.css" rel="stylesheet" />
-<link href="css/style.css" rel="stylesheet" />
-
-<script src="lib/angular/angular.js"></script>
-<script src="lib/lodash.min.js"></script>
-<script src="lib/jquery/jquery-1.10.2.min.js"></script>
-<script src="lib/tooltip.js"></script>
-<script src="lib/fabric.js"></script>
-
-<script src="js/models.rus.js"></script>
-<script src="js/customs.rus.js"></script>
-<script src="js/defaults.js"></script>
-<script src="js/controllers.js"></script>
-<link href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700&amp;subset=latin,cyrillic" rel="stylesheet" type="text/css">
-</head>
-<body ng-controller="MonitorsList">
 <div class="b-head">
 
   <div class="b-logo"><a href="/"><img src="img/logo.png" alt="Ambient Acoustics" /></a></div>
   <ol class="b-nav">
     <li class="b-nav-item"
-    ng-repeat="m in ['Модель','Цвет','Вставки','Рисунки','Провода','Другое','Доставка']"
+    ng-repeat="m in ['MODEL','DESIGN','FACEPLATES','ARTWORK','CORD','OPTIONS','DELIVERY']"
     ng-class="{active : $index == step - 1}"
     ng-click="setStep($index + 1)"
     >{{m}}</li>
@@ -44,10 +22,10 @@
 
     <div class="b-models-description">
       <div class="model-intro" ng-show="steps.model.active.id == null">
-        <div class="wrap">
-          <div class="header">Добро пожаловать в помощник<br/>подбора ушных мониторов</div>
+        <div class="wrap"> 
+          <div class="header">Welcome <br/>to Ambient Acoustics <br/> Custom IEM designer</div>
           <div class="description">
-            Для начала выберите одну из моделей<br/>мониторов слева и нажмите<br/>кнопку "Выбрать"
+             Please select your custom IEM model   
           </div>
         </div>
       </div>
@@ -61,7 +39,7 @@
           <div class="col2">
             <div class="header" ng-bind-html="html(m.title)">{{m.title}}</div>
             <div class="pricing">
-              <span class="b-btn btn-select" ng-click="confirmModel($index)">Выбрать</span>
+              <span class="b-btn btn-select" ng-click="confirmModel($index)">Next</span>
               {{m.price}}$
             </div>
           </div>
@@ -69,7 +47,7 @@
         <div class="model-description">
           <div class="col1" ng-bind-html="html(m.description)">{{m.description}}</div>
           <div class="col2">
-            <div class="specs-title">Характеристики:</div>
+            <div class="specs-title"> SPECS.:</div>
             <div class="specs" ng-repeat="s in m.specs">{{s}}</div>
           </div>
         </div>
@@ -82,16 +60,13 @@
       <div class="switcher-wrap" ng-show="step < 7" ng-class="{hidden: step > 5 || ((step == 5) && steps.model.active.custom && steps.cordSelector.active == 'old')}">
 
         <div class="switcher">
-          <div ng-click="setSame(true)" ng-class="{active: same}">одинаковые</div>
-          <div ng-click="setSame(false)" ng-class="{active: !same}">разные</div>
-        </div>
-        <div class="pic-controls" ng-show="step == 4">
-            <button ng-show="showRotatePic" ng-click="rotatePics()">Вращать</button>
-            <button ng-show="showConfirmPic" ng-click="savePic()">Подтвердить</button>
+          <div ng-click="setSame(true)" ng-class="{active: same}">Same</div>
+          <div ng-click="setSame(false)" ng-class="{active: !same}">Different</div>
         </div>
       </div>
       <div class="ears" ng-show="step < 7">
         <div class="ear {{orient}}" ng-repeat="orient in ['left', 'right']">
+
           <div class="ear-layer {{c.name}}"
             ng-repeat="c in [steps.base, steps.cover, steps.chanel]"
             >
@@ -108,11 +83,9 @@
             ng-show="maxStepComplete > 2"
             />
           </div>
-
           <div ng-show="maxStepComplete > 3"
             class="canva-cont"
             ng-class="{active: step == 4}"
-            
             >
               <canvas id="canvas{{orient}}" width="360" height="300" class="cnv"></canvas>
           </div>
@@ -138,18 +111,18 @@
       </div>
 
       <script type="text/ng-template" id="selector">
-        <div class="selector" ng-class="{same: same}" data-type="{{sel.name}}"> 
-            <div class="selector-title">{{sel.title}}</div>
-            <div class="selector-items {{orient}}" ng-repeat="orient in ['left', 'right']">
-                <div class="selector-item"
-                    ng-repeat="i in sel.list"
-                    ng-class="{active: sel.active[orient].id == $index}"
-                    ng-click="select(orient, sel.name, $index)"
-                    data-tooltip="{{i.name}}"
-                    data-tooltip-position="top"
-                    style="background-image: url({{'i/' + i.url}})"></div>
-            </div>
-       </div>
+<div class="selector" ng-class="{same: same}" data-type="{{sel.name}}"> 
+                            <div class="selector-title">{{sel.title}}</div>
+                            <div class="selector-items {{orient}}" ng-repeat="orient in ['left', 'right']">
+                                <div class="selector-item"
+                                    ng-repeat="i in sel.list"
+                                    ng-class="{active: sel.active[orient].id == $index}"
+                                    ng-click="select(orient, sel.name, $index)"
+                                    data-tooltip="{{i.name}}"
+                                    data-tooltip-position="top"
+                                    style="background-image: url({{'i/' + i.url}})"></div>
+                            </div>
+                        </div>
       </script>
 
       <script type="text/ng-template" id="graphics">
@@ -159,7 +132,7 @@
                   <input type="file"
                     file-input="cap.frontImg"
                     />
-                  + добавить рисунок  
+                  + add picture
               </div>
           </div>
             <div class="selector-items {{orient}}" ng-repeat="orient in ['left', 'right']">
@@ -190,7 +163,6 @@
           ng-include="'graphics'">
         </div>
 
-
         <div ng-show="step == 5">
           <div class="misc misc__custom" ng-show="steps.model.active.custom">
             <div class="misc-row">
@@ -202,7 +174,7 @@
                     ng-change="aaCordSelector()"
                     value="old" />
 
-                    <label>Оставить старый провод и разъемы в мониторах (без доплат)</label> 
+                    <label>Leave cord and plugs (free)</label> 
                   </div>
                   <div>
                     <input type="radio"
@@ -210,14 +182,14 @@
                     ng-change="aaCordSelector()"
                     value="change"
                     />
-                    <label>Замена разъемов в мониторах + установка новых на комплектный провод (30$)</label>
+                    <label>Plugs replacement(30$)</label>
                   </div>
                   <div>
                     <input type="radio" 
                     ng-model="steps.cordSelector.active"
                     ng-change="aaCordSelector()"
                     value="AA" />
-                    <label>Замена разъемов в мониторах + кастомный провод Аmbient Acoustics (60$)</label>
+                    <label>Plugs replacement + Ambient cord 60$)</label>
                   </div>
                 </div>
               </div>
@@ -233,7 +205,7 @@
             <div class="cord-table">
               <div class="cord-col1">
                 <div class="selector jack-selector">
-                  <div class="selector-title">Тип джека</div>
+                  <div class="selector-title">Type of 3,5 plug</div>
                   <div class="selector-radio">
                     <label for="angle"><img src="i/7-1.png"></label> 
                     <input type="radio" ng-model="steps.jack.active" ng-value="steps.jack.angle" />
@@ -250,19 +222,19 @@
               </div>
               <div class="cord-col3">
                 <div class="selector cord-selector">
-                  <div class="selector-title">Длина провода</div>
+                  <div class="selector-title">Cord length</div>
                   <div class="selector-radio">
                     <div>
                       <input type="radio" ng-model="steps.cordLength.active" value="small" />
-                      <label for="l100">100 см <img src="i/8-1.png"></label> 
+                      <label for="l100">100 sm <img src="i/8-1.png"></label> 
                     </div>
                     <div>
                       <input type="radio" ng-model="steps.cordLength.active" value="medium" />
-                      <label for="l130">130 см <img src="i/8-2.png"></label>
+                      <label for="l130">130 sm <img src="i/8-2.png"></label>
                     </div>
                     <div>
                       <input type="radio" ng-model="steps.cordLength.active" value="large" />
-                      <label for="l160">160 см <img src="i/8-3.png"></label>
+                      <label for="l160">160 sm <img src="i/8-3.png"></label>
                     </div>
                   </div>
                 </div>
@@ -279,50 +251,50 @@
             <div class="misc-col1">
 
               <label>
-                <input type="checkbox" ng-model="steps.engraving.active">Гравировка кейса
+                <input type="checkbox" ng-model="steps.engraving.active">Case engraving (inside foam)
               </label>
               <div class="misc-desc" ng-show="steps.engraving.active">
-                <input type="text" placeholder="Введите текст гравировки" ng-model="steps.engraving.text">
+                <input type="text" placeholder="Engraving text" ng-model="steps.engraving.text">
               </div>
             </div>
             <div class="misc-col2">
               <label>
-                <input type="checkbox" ng-model="steps.ventilation.active">Сквозная вентиляция
+                <input type="checkbox" ng-model="steps.ventilation.active">Ambient port
               </label>
               <div class="misc-desc">
-                Уменьшаяет звукоизоляцию до такого уровня, что остается базовая коммуникация с залом.
+                Ambient ports allows you to hear ambient sounds (will decrease low frequencies!)  
               </div>
             </div>
             <div class="misc-col3">
               <label>
-                <input type="checkbox" ng-model="steps.filterSulfur.active">Установка серных фильтров
+                <input type="checkbox" ng-model="steps.filterSulfur.active">Waxguard filters
               </label>
               <div class="misc-desc">
-                Используют чтобы сера и влага не попадала внутрь мониторов.
+                Prevent IEMs sound bores from durt and sulfur 
               </div>
             </div>
           </div>
           <div class="misc-row" ng-show="steps.model.active.custom">
             <div class="misc-col1">
               <label>
-                <input type="checkbox" ng-model="steps.namedCase.active">Именной влагозащитный кейс
+                <input type="checkbox" ng-model="steps.namedCase.active">Personalized waterproof case
               </label>
             </div>
             <div class="misc-col2">
               <label>
-                <input type="checkbox" ng-model="steps.sulfurStick.active">Присбособление для извлечения серы и грязи
+                <input type="checkbox" ng-model="steps.sulfurStick.active">IEM wax tool removal
               </label>
             </div>
             <div class="misc-col3">
               <label>
-                <input type="checkbox" ng-model="steps.drierCapsule.active">Осушающая капсула
+                <input type="checkbox" ng-model="steps.drierCapsule.active">Dehumidifier capsule 
               </label>
             </div>
           </div>
           <div class="misc-row" ng-show="steps.model.active.custom">
             <div class="misc-col1">
               <label>
-                <input type="checkbox" ng-model="steps.fabricCase.active">Тканевый чехол
+                <input type="checkbox" ng-model="steps.fabricCase.active">Fabric cover
               </label>
             </div>
           </div>
@@ -331,62 +303,59 @@
 
 
       <div class="shipping" ng-show="step == 7">
-        <div class="header">Адресс доставки</div>
+        <div class="header">Delivery  </div>
 
         <form ng-submit="submit()">
           <div class="shipping-form">
-            <label data-hint="Инициалы будут отпечатаны
-              на крышке кейса">
-              Инициалы
+            <label data-hint="Initials will be engrave on case faceplate">
+              Initials
               <input type="text" ng-model="steps.customer.userName"/>
             </label>
             <label>
-              Имейл
+              Email
               <input type="text" ng-model="steps.customer.email"/>
             </label>
             <label>
-              Фамилия
+              Surname
               <input type="text" ng-model="steps.customer.surname"/>
             </label>
             <label>
-              Имя
+              Name
               <input type="text" ng-model="steps.customer.name"/>
             </label>
             <label>
-              Отчество
-              <input type="text" ng-model="steps.customer.secondName"/>
-            </label>
+            
             <label>
-              Артист/Группа
+             Artist 
               <input type="text" ng-model="steps.customer.artist"/>
             </label>
-            <label data-hint1="Улица, дом, квартира">
-              Адрес
+            <label data-hint1="Street, house, appartment">
+             Delivery address
               <input type="text" ng-model="steps.customer.address"/>
             </label>
             <label>
-              Город
+             City
               <input type="text" ng-model="steps.customer.city"/>
             </label>
             <label>
-              Страна
+              Country
               <input type="text" ng-model="steps.customer.country"/>
             </label>
             <label>
-              <span>Почтовый индекс</span>
+              <span>Postal code</span>
               <input type="text" ng-model="steps.customer.zip"/>
             </label>
             <label>
-              Телефон
+              Phone numder
               <input type="text" ng-model="steps.customer.phone"/>
             </label>
             <label>
-              Примечания
+              Notes
               <textarea ng-model="steps.customer.misc"></textarea>
             </label>
 
             <div class="btn-submit">
-              <button type="submit" class="submit b-btn">Отправить заказ</button>
+              <button type="submit" class="submit b-btn">Print spec</button>
             </div>
           </div>
         </form>
@@ -403,18 +372,18 @@
           ng-click="prevStep()"
           ng-class="{ one: step == 7}"
           >
-          Назад
+          back
         </span>
         <span class="b-btn btn-continue"
           ng-click="nextStep()"
           ng-show="step < 7"
           >
-          Продолжить
+          next
         </span>
       </div>
       <div class="total">
         <div class="header">
-          <div class="title">Общая стоимость</div>
+          <div class="title">Total</div>
           <div class="price">{{ totalPrice() }}$</div>
         </div>
         <div class="details">
@@ -448,11 +417,11 @@
           <div class="details-row" ng-show="steps.model.active.custom && steps.cordSelector.active != 'old'">
             <div class="value"
               ng-show="steps.cordSelector.active == 'change'">
-              Замена разъемов либо установка новых
+              Plugs replacement or installation new ones
             </div>
             <div class="value"
               ng-show="steps.cordSelector.active == 'AA'">
-              Провод Ambient Acoustics
+              Ambient Acoustics cord
             </div>
             <div class="price">{{ steps.cordSelector[steps.cordSelector.active].price }}$</div>
           </div>
@@ -472,7 +441,7 @@
             ng-show="(maxStepComplete > 4) && (steps.cordSelector.active == 'AA')"
             >
             <div class="value">
-              Тип джека
+              Type 3,5 plug
               <div class="hint">{{ steps.jack.active }}</div>
             </div>
           </div>
@@ -481,7 +450,7 @@
             ng-show="(maxStepComplete > 4) && (steps.cordSelector.active == 'AA')"
             >
             <div class="value">
-              Длина провода
+              cord lenght
               <div class="hint">{{ steps.cordLength[steps.cordLength.active].name }}</div>
             </div>
             <div ng-if="steps.cordLength[steps.cordLength.active].price" class="price">{{ steps.cordLength[steps.cordLength.active].price }}$</div>
@@ -490,7 +459,7 @@
           <div class="details-row"
             ng-show="steps.engraving.active && steps.engraving.text.length > 0">
             <div class="value">
-              Гравировка кейса
+              Case engraving (inside foam)
               <div class="hint">{{ steps.engraving.text }}</div>
             </div>
             <div ng-if="steps.engraving.text != ''" class="price">{{ steps.engraving.price }}$</div>
@@ -498,42 +467,42 @@
 
           <div class="details-row" ng-show="steps.ventilation.active">
             <div class="value">
-              Сквозная вентиляция
+             Ambient port
             </div>
             <div class="price">{{ steps.ventilation.price }}$</div>
           </div>
 
           <div class="details-row" ng-show="steps.filterSulfur.active">
             <div class="value">
-              Установка серных фильтров
+              Waxguards filters
             </div>
             <div class="price">{{ steps.filterSulfur.price }}$</div>
           </div>
 
           <div class="details-row" ng-show="steps.model.active.custom && steps.namedCase.active">
             <div class="value">
-              Именной влагозащитный кейс
+              Personalized waterproof case
             </div>
             <div class="price">{{ steps.namedCase.price }}$</div>
           </div>
 
           <div class="details-row" ng-show="steps.model.active.custom && steps.sulfurStick.active">
             <div class="value">
-              Присбособление для извлечения серы и грязи
+              IEM wax tool removal
             </div>
             <div class="price">{{ steps.sulfurStick.price }}$</div>
           </div>
 
           <div class="details-row" ng-show="steps.model.active.custom && steps.drierCapsule.active">
             <div class="value">
-              Осушающая капсула
+             Dehumidifier capsule
             </div>
             <div class="price">{{ steps.drierCapsule.price }}$</div>
           </div>
 
           <div class="details-row" ng-show="steps.model.active.custom && steps.fabricCase.active">
             <div class="value">
-              Тканевый чехол
+              Fabric cover
             </div>
             <div class="price">{{ steps.fabricCase.price }}$</div>
           </div>
@@ -542,5 +511,3 @@
     </div>
   </div>
 </div>
-</body>
-</html>
