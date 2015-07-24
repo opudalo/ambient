@@ -443,12 +443,12 @@ var CUSTOMS = {
         name: 'cord',
         title: 'Цвет провода',
         list: [{
-            url: '6-3.png',
-            name: 'серебристый',
-            price: 0
-        }, {
             url: '6-2.png',
             name: 'черный',
+            price: 0
+        }, {
+            url: '6-3.png',
+            name: 'серебристый',
             price: 0
         }, {
             url: '6-1.png',

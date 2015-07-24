@@ -23,7 +23,7 @@ var DEFAULTS =  {
     old: { price: 0}
   },
   jack: {
-    active: 'угловой',
+    active: 'прямой',
     angle: "угловой",
     straight: "прямой"
   },

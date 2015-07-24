@@ -443,12 +443,12 @@
         name: 'cord',
         title: 'cord color',
         list: [{
-            url: '6-3.png',
-            name: 'silver',
-            price: 0
-        }, {
             url: '6-2.png',
             name: 'black',
+            price: 0
+        }, {
+            url: '6-3.png',
+            name: 'silver',
             price: 0
         }, {
             url: '6-1.png',
