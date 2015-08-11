@@ -43,7 +43,7 @@ monitors.directive('fileInput', [ '$parse', '$http', function($parse, $http) {
 
 
 monitors.controller('MonitorsList', ['$scope', '$sce', '$http', function ($scope, $sce, $http) {
- //   new Tooltip()
+    new Tooltip()
 
     $scope.steps = DEFAULTS
 
@@ -382,7 +382,7 @@ monitors.controller('MonitorsList', ['$scope', '$sce', '$http', function ($scope
 
       ;['left', 'right'].forEach(function(orient) {
           var active = window['c' + orient],
-            base64 = active.toDataURL()
+            base64 = active && active.toDataURL() || ''
 
           data.graphicsPosition[orient] = base64
       })

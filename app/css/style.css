@@ -954,6 +954,6 @@ body {
   font-size: 12px;
 }
 .tooltip::after {
-  top: 21px;
+  top: 20px;
   border-top-color: #fff;
 }
